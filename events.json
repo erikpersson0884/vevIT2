@@ -1,0 +1,25 @@
+[
+    {
+        "user": "Neinei",
+        "time": "23:58"
+    },
+    {
+        "user": "Neinei",
+        "time": "23:58"
+    },
+    {
+        "user": "Kåfe",
+        "time": "15:12"
+    },
+    {
+        "user": "Kåfe",
+        "time": "15:12"
+    },
+    {
+        "users": [
+            "Göken",
+            "Kåfe"
+        ],
+        "time": "02:13"
+    }
+]

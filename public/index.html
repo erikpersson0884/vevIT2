@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>vevIT</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+
+<body>
+    <div id="userSelection">
+        <div class="selectedUser" id="userDisplay">
+            USER
+        </div>
+        <div class="userDropdown" id="userDropdown">
+            <input type="text" id="searchInput" placeholder="Search for a user">
+            <ul id="userList"></ul>
+        </div>
+    </div>
+
+
+    <div class="main-content">
+    <h1>Book a Vev</h1>
+
+    <h3>Välj din motståndare:</h3>
+    <select id="selectOponentSelect" class="select-student-button">
+        <option value="" disabled selected>Motståndare</option>
+    </select>
+
+    <div class="select-time-div">
+        <label for="time">Tid: </label>
+        <input type="time" id="chooseTimeInput" name="time">
+    </div>
+
+    <!-- Book Button -->
+    <button id="bookVevButton" class="book-vev">Boka Vev i Sandlådan</button>
+</div>
+
+
+
+  <script src="app.js"></script>
+</body>
+</html>
