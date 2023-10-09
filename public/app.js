@@ -1,11 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
     const userDisplay = document.getElementById("userDisplay");
     const userDropdown = document.getElementById("userDropdown");
-    const searchInput = document.getElementById("searchInput");
+    const userSearchInput = document.getElementById("userSearchInput");
     const userList = document.getElementById("userList");
 
-    let selectedUsers = []; // To store the selected users
+    const selectOponentSelect = document.getElementById("selectOponentSelect");
+    const eventTimeInput = document.getElementById("eventTimeInput");
+    const bookEventButton = document.getElementById("bookVevButton");
+
     let users = []; // To store the user data from users.json
+
+    let selectedUser = null; // To store the selected user
+    let selectedOponent = null; // To store the selected user
 
     // Function to populate the user list from users.json
     function populateUserList() {
@@ -22,16 +28,16 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Function to update the selected users display
-    function updateSelectedUsers() {
-        userDisplay.textContent = selectedUsers.join(", ");
+    // Function to update the selected user display
+    function updateselectedUser() {
+        userDisplay.textContent = selectedUser;
     }
 
     // Fetch user data from users.json
     fetch('users.json')
         .then(response => response.json())
         .then(data => {
-            users = data.slice(0, 5); // Get the first 5 users
+            users = data;
             populateUserList();
         })
         .catch(error => console.error('Error fetching JSON:', error));
@@ -39,46 +45,36 @@ document.addEventListener("DOMContentLoaded", function() {
     // Event listener for displaying the dropdown when "USER" is clicked
     userDisplay.addEventListener("click", () => {
         userDropdown.style.display = "block";
-        searchInput.value = "";
-        searchInput.focus();
+        userSearchInput.value = "";
+        userSearchInput.focus();
     });
 
     // Event listener for the search input
-    searchInput.addEventListener("input", () => {
-        const searchValue = searchInput.value.toLowerCase();
+    userSearchInput.addEventListener("input", () => {
+        const searchValue = userSearchInput.value.toLowerCase();
         const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchValue));
         populateUserList(filteredUsers);
     });
 
-    const selectElement = document.getElementById("selectOponentSelect");
-    const eventTimeInput = document.getElementById("chooseTimeInput");
-    const bookEventButton = document.getElementById("bookVevButton");
 
-    // Fetch the JSON data from the users.json file and populate the select element
-    fetch('users.json')
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(user => {
-                const option = document.createElement("option");
-                option.textContent = user.name;
-                selectElement.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error fetching JSON:', error));
+
+
+
+
 
     // Event listener for the "Book Event" button
     bookEventButton.addEventListener("click", function() {
-        const selectedUser = selectElement.value;
+        const selectedUser = selectOponentSelect.value;
         const eventTime = eventTimeInput.value;
 
         if (selectedUser && eventTime) {
-            selectedUsers.push(selectedUser); // Add the currently selected user
+            // Create an object with the data to be sent to the server
             const eventData = {
-                users: selectedUsers, // Include all selected users
+                users: [selectedUser, ], // Include the selected user
                 time: eventTime
             };
 
-            // Send the event data to the server using a POST request
+            // Send a POST request to the server
             fetch('/bookEvent', {
                 method: 'POST',
                 headers: {
@@ -88,14 +84,25 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(response => {
                 if (response.ok) {
-                    console.log('Event booked successfully for users:', selectedUsers);
+                    // The POST request was successful
+                    return response.json();
                 } else {
-                    console.error('Failed to book event.');
+                    // Handle the error here if needed
+                    console.error('Failed to book event');
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .then(data => {
+                // Handle the response from the server here if needed
+                console.log('Event booked successfully:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         } else {
             console.error('Please select a user and enter an event time.');
         }
+
+        // Clear the selected option in the selectOponentSelect to allow re-selection
+        selectOponentSelect.value = "";
     });
 });

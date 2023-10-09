@@ -30,7 +30,8 @@ app.post('/bookEvent', (req, res) => {
     // Write the updated data back to the events.json file
     fs.writeFileSync('events.json', JSON.stringify(eventDataArray, null, 4), 'utf8');
 
-    res.sendStatus(200); // Respond with a success status code
+    // Respond with a JSON object indicating success
+    res.status(200).json({ message: 'Event booked successfully' });
 });
 
 // Start the server

@@ -1,25 +1,14 @@
 [
     {
-        "user": "Neinei",
-        "time": "23:58"
-    },
-    {
-        "user": "Neinei",
-        "time": "23:58"
-    },
-    {
-        "user": "Kåfe",
-        "time": "15:12"
-    },
-    {
-        "user": "Kåfe",
-        "time": "15:12"
+        "users": [
+            "Göken"
+        ],
+        "time": "17:27"
     },
     {
         "users": [
-            "Göken",
-            "Kåfe"
+            "Neinei"
         ],
-        "time": "02:13"
+        "time": "02:26"
     }
 ]

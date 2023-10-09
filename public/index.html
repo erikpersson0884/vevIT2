@@ -12,28 +12,35 @@
             USER
         </div>
         <div class="userDropdown" id="userDropdown">
-            <input type="text" id="searchInput" placeholder="Search for a user">
+            <input type="text" id="userSearchInput" placeholder="Search for a user">
             <ul id="userList"></ul>
         </div>
     </div>
 
 
     <div class="main-content">
-    <h1>Book a Vev</h1>
+        <h1>Book a Vev</h1>
 
-    <h3>Välj din motståndare:</h3>
-    <select id="selectOponentSelect" class="select-student-button">
-        <option value="" disabled selected>Motståndare</option>
-    </select>
+        <h3>Välj din motståndare:</h3>
+        <div id="opponentSelection">
+            <div class="selectedUser" id="opponentDisplay">
+                OPPONENT
+            </div>
+            <div class="userDropdown" id="opponentDropdown">
+                <input type="text" id="opponentSearchInput" placeholder="Search for a opponent">
+                <ul id="opponentList"></ul>
+            </div>
+        </div>
+        
 
-    <div class="select-time-div">
-        <label for="time">Tid: </label>
-        <input type="time" id="chooseTimeInput" name="time">
+        <div class="select-time-div">
+            <label for="time">Tid: </label>
+            <input type="time" id="eventTimeInput" name="time">
+        </div>
+
+        <!-- Book Button -->
+        <button id="bookVevButton" class="book-vev">Boka Vev i Sandlådan</button>
     </div>
-
-    <!-- Book Button -->
-    <button id="bookVevButton" class="book-vev">Boka Vev i Sandlådan</button>
-</div>
 
 
 
