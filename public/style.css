@@ -19,8 +19,7 @@ body {
   width: 13rem;
   height: 17.2rem;
   padding: 2rem;
-  margin-top: 18vh;
-  margin-inline: auto;
+  margin: 18vh auto;
 }
 
 h1 {
@@ -123,4 +122,30 @@ button {
 
 #userList li:hover {
   background-color: #f0f0f0;
+}
+
+
+
+/* Style for the sidebar */
+
+.sidebar {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-left: 20px; /* Adjust the margin as needed */
+  float: right; /* Float the sidebar to the right */
+  width: 30vw; /* Adjust the width as needed */
+}
+
+.sidebar > div {
+  border-bottom: 5px #fff solid;
+}
+
+.sidebar div {
+  display: flex;
+  justify-content: space-between ;
+}
+
+ul {
+  padding-inline-start: 0;
 }

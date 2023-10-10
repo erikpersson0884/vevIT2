@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const eventTimeInput = document.getElementById("eventTimeInput");
     const bookEventButton = document.getElementById("bookVevButton");
 
+    const displayVevsUl = document.getElementById("displayVevs");
+
     let users = []; // To store the user data from users.json
 
     let selectedUser = null; // To store the selected user
@@ -21,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to update the selected user display
     function updateselectedUser() {
-        console.log(selectedUser)
+        showVevs()
         userDisplay.textContent = selectedUser;
     }
 
@@ -128,6 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+
     // Event listener for the "Book Event" button
     bookEventButton.addEventListener("click", function() {
         console.log(eventTime)
@@ -164,10 +167,33 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    const testshowvevbutton = document.getElementById("testshowvevbutton");
-    testshowvevbutton.addEventListener("click", showVevs);
-
     
+    function populateDisplayVevs(vevs){
+        vevs.forEach(function(vev){
+            // Create a div element
+            const div = document.createElement("div");
+            div.classList.add("displayVevsLi")
+            
+            // Create three p tags and set their text content
+            const p1 = document.createElement("p");
+            p1.textContent = vev.user;
+            
+            const p2 = document.createElement("p");
+            p2.textContent = vev.opponent;
+            
+            const p3 = document.createElement("p");
+            p3.textContent = vev.time;
+            
+            // Append the p tags to the div
+            div.appendChild(p1);
+            div.appendChild(p2);
+            div.appendChild(p3);
+        
+            // Append the div to the container
+            displayVevsUl.appendChild(div);
+        });
+    };
+
     function showVevs(){
         // GET THE BOOKED VEV
         fetch('/getLatestVev', {
@@ -185,8 +211,9 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(data => {
                 console.log(data);
+
+                populateDisplayVevs(data);
         
             })
     }
-
 });
