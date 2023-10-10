@@ -4,14 +4,31 @@ document.addEventListener("DOMContentLoaded", function() {
     const userSearchInput = document.getElementById("userSearchInput");
     const userList = document.getElementById("userList");
 
-    const selectOponentSelect = document.getElementById("selectOponentSelect");
+    const opponentDisplay = document.getElementById("opponentDisplay");
+    const opponentDisplayDropdown = document.getElementById("opponentDropdown");
+    const opponentDisplaySearchInput = document.getElementById("opponentSearchInput");
+    const opponentList = document.getElementById("opponentList");
+
+    const selectOpponentSelect = document.getElementById("selectOpponentSelect");
     const eventTimeInput = document.getElementById("eventTimeInput");
     const bookEventButton = document.getElementById("bookVevButton");
 
     let users = []; // To store the user data from users.json
 
     let selectedUser = null; // To store the selected user
-    let selectedOponent = null; // To store the selected user
+    let selectedOpponent = null; // To store the selected user
+    let eventTime = null; // To storre the selected time
+
+    // Function to update the selected user display
+    function updateselectedUser() {
+        console.log(selectedUser)
+        userDisplay.textContent = selectedUser;
+    }
+
+    // Function to update the selected user display
+    function updateSelectedOpponent() {
+        opponentDisplay.textContent = selectedOpponent;
+    }
 
     // Function to populate the user list from users.json
     function populateUserList() {
@@ -20,17 +37,26 @@ document.addEventListener("DOMContentLoaded", function() {
             const listItem = document.createElement("li");
             listItem.textContent = user.name;
             listItem.addEventListener("click", () => {
-                selectedUsers.push(user.name);
-                updateSelectedUsers();
+                selectedUser = user.name;
+                updateselectedUser();
                 userDropdown.style.display = "none";
             });
             userList.appendChild(listItem);
         });
     }
 
-    // Function to update the selected user display
-    function updateselectedUser() {
-        userDisplay.textContent = selectedUser;
+    function populateOpponentList() {
+        opponentList.innerHTML = "";
+        users.forEach(user => {
+            const listItem = document.createElement("li");
+            listItem.textContent = user.name;
+            listItem.addEventListener("click", () => {
+                selectedOpponent = user.name;
+                updateSelectedOpponent();
+                opponentDropdown.style.display = "none";
+            });
+            opponentList.appendChild(listItem);
+        });
     }
 
     // Fetch user data from users.json
@@ -39,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             users = data;
             populateUserList();
+            populateOpponentList();
         })
         .catch(error => console.error('Error fetching JSON:', error));
 
@@ -49,11 +76,50 @@ document.addEventListener("DOMContentLoaded", function() {
         userSearchInput.focus();
     });
 
+    opponentDisplay.addEventListener("click", () => {
+        opponentDropdown.style.display = "block";
+        opponentSearchInput.value = "";
+        opponentSearchInput.focus();
+    });
+
+
     // Event listener for the search input
     userSearchInput.addEventListener("input", () => {
         const searchValue = userSearchInput.value.toLowerCase();
         const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchValue));
         populateUserList(filteredUsers);
+    });
+
+    opponentSearchInput.addEventListener("input", () => {
+        const searchValue = opponentSearchInput.value.toLowerCase();
+        const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchValue));
+        populateOpponentList(filteredUsers);
+    });
+
+    // Event listener for displaying the dropdown when "USER" is clicked
+    userDisplay.addEventListener("click", () => {
+        userDropdown.style.display = "block";
+        userSearchInput.value = "";
+        userSearchInput.focus();
+    });
+
+    opponentDisplay.addEventListener("click", () => {
+        opponentDropdown.style.display = "block";
+        opponentSearchInput.value = "";
+        opponentSearchInput.focus();
+    });
+
+    // Event listener for the search input
+    userSearchInput.addEventListener("input", () => {
+        const searchValue = userSearchInput.value.toLowerCase();
+        const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchValue));
+        populateUserList(filteredUsers);
+    });
+
+    opponentSearchInput.addEventListener("input", () => {
+        const searchValue = userSearchInput.value.toLowerCase();
+        const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchValue));
+        populateOpponentList(filteredUsers);
     });
 
 
@@ -64,13 +130,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Event listener for the "Book Event" button
     bookEventButton.addEventListener("click", function() {
-        const selectedUser = selectOponentSelect.value;
-        const eventTime = eventTimeInput.value;
+        console.log(eventTime)
+        eventTime = eventTimeInput.value;
+        console.log(eventTime)
 
-        if (selectedUser && eventTime) {
+        if (selectedUser && selectedOpponent && eventTime) {
             // Create an object with the data to be sent to the server
             const eventData = {
-                users: [selectedUser, ], // Include the selected user
+                user: selectedUser, // Include the selected user
+                opponent: selectedOpponent,
                 time: eventTime
             };
 
@@ -84,25 +152,19 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(response => {
                 if (response.ok) {
-                    // The POST request was successful
-                    return response.json();
+                    
                 } else {
                     // Handle the error here if needed
                     console.error('Failed to book event');
                 }
             })
-            .then(data => {
-                // Handle the response from the server here if needed
-                console.log('Event booked successfully:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+
         } else {
             console.error('Please select a user and enter an event time.');
         }
-
-        // Clear the selected option in the selectOponentSelect to allow re-selection
-        selectOponentSelect.value = "";
     });
+
+
+
+
 });

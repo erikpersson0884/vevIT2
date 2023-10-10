@@ -1,14 +1,22 @@
 [
     {
-        "users": [
-            "Göken"
-        ],
-        "time": "17:27"
+        "user": "Neinei",
+        "opponent": "Kåfe",
+        "time": "03:06"
     },
     {
-        "users": [
-            "Neinei"
-        ],
-        "time": "02:26"
+        "user": "Neinei",
+        "opponent": "Göken",
+        "time": "03:06"
+    },
+    {
+        "user": "Neinei",
+        "opponent": "Neinei",
+        "time": "06:08"
+    },
+    {
+        "user": "Neinei",
+        "opponent": "Göken",
+        "time": "03:15"
     }
 ]

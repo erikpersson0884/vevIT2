@@ -11,6 +11,21 @@ app.use(express.json());
 // Serve static files from the 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+function filterItemsByUser(inputUser, jsonArray) {
+    return jsonArray.filter(item => item.user === inputUser);
+}
+  
+
+  
+  const inputUser = "Neinei"; // Replace with the user you want to filter by
+  const filteredItems = filterItemsByUser(inputUser, jsonData);
+  
+  console.log(filteredItems);
+
+  
+
+
 // Define a route to handle the POST request for booking events
 app.post('/bookEvent', (req, res) => {
     const eventData = req.body;
@@ -33,6 +48,29 @@ app.post('/bookEvent', (req, res) => {
     // Respond with a JSON object indicating success
     res.status(200).json({ message: 'Event booked successfully' });
 });
+
+
+app.get('/getLatestVev', (req, res) => {
+    // Load existing data from the events.json file (if any)
+    let eventDataArray = [];
+    try {
+        const data = fs.readFileSync('events.json', 'utf8');
+        eventDataArray = JSON.parse(data);
+    } catch (err) {
+        console.error('Error reading events.json:', err);
+    }
+    let event = eventDataArray[0]
+    filterItemsByUser()
+
+    // Respond with a JSON object indicating success
+    res.status(200).json(event);
+});
+
+
+
+
+
+
 
 // Start the server
 app.listen(port, () => {
