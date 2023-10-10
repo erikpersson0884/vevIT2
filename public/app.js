@@ -169,6 +169,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     
     function populateDisplayVevs(vevs){
+        while (displayVevsUl.firstChild) {
+            displayVevsUl.removeChild(displayVevsUl.firstChild);
+        }
+
         vevs.forEach(function(vev){
             // Create a div element
             const div = document.createElement("div");

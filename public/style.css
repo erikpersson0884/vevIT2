@@ -133,7 +133,8 @@ button {
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-left: 20px; /* Adjust the margin as needed */
-  float: right; /* Float the sidebar to the right */
+  position: absolute;
+  right: .8rem;
   width: 30vw; /* Adjust the width as needed */
 }
 
