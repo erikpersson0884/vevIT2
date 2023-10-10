@@ -17,11 +17,6 @@ function filterItemsByUser(inputUser, jsonArray) {
 }
   
 
-  
-  const inputUser = "Neinei"; // Replace with the user you want to filter by
-  const filteredItems = filterItemsByUser(inputUser, jsonData);
-  
-  console.log(filteredItems);
 
   
 
@@ -52,18 +47,31 @@ app.post('/bookEvent', (req, res) => {
 
 app.get('/getLatestVev', (req, res) => {
     // Load existing data from the events.json file (if any)
+    const user = req.headers.user; // Extract user from request headers
+
     let eventDataArray = [];
+
     try {
         const data = fs.readFileSync('events.json', 'utf8');
         eventDataArray = JSON.parse(data);
     } catch (err) {
         console.error('Error reading events.json:', err);
     }
-    let event = eventDataArray[0]
-    filterItemsByUser()
 
-    // Respond with a JSON object indicating success
-    res.status(200).json(event);
+    let events = filterItemsByUser(user, eventDataArray);
+
+
+
+    // Respond with a JSON object indicating success or error
+    if (user == null) {
+        res.status(500).json({ error: "User was null" });
+    } 
+    else if (events) {
+        res.status(200).json(events);
+    }
+    else {
+        res.status(500).json({ error: 'Failed to retrieve events' });
+    }
 });
 
 

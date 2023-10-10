@@ -1,22 +1,27 @@
 [
     {
         "user": "Neinei",
-        "opponent": "Kåfe",
-        "time": "03:06"
-    },
-    {
-        "user": "Neinei",
-        "opponent": "Göken",
-        "time": "03:06"
-    },
-    {
-        "user": "Neinei",
-        "opponent": "Neinei",
-        "time": "06:08"
-    },
-    {
-        "user": "Neinei",
         "opponent": "Göken",
         "time": "03:15"
+    },
+    {
+        "user": "Göken",
+        "opponent": "Neinei",
+        "time": "04:21"
+    },
+    {
+        "user": "Neinei",
+        "opponent": "Göken",
+        "time": "04:27"
+    },
+    {
+        "user": "Neinei",
+        "opponent": "Göken",
+        "time": "04:27"
+    },
+    {
+        "user": "Neinei",
+        "opponent": "Göken",
+        "time": "04:28"
     }
 ]

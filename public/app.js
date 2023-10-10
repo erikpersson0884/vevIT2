@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(response => {
                 if (response.ok) {
-                    
+                    showVevs();
                 } else {
                     // Handle the error here if needed
                     console.error('Failed to book event');
@@ -164,7 +164,29 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    const testshowvevbutton = document.getElementById("testshowvevbutton");
+    testshowvevbutton.addEventListener("click", showVevs);
 
-
+    
+    function showVevs(){
+        // GET THE BOOKED VEV
+        fetch('/getLatestVev', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'user': selectedUser
+            },
+        })
+            .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Parse the response body as JSON
+            })
+            .then(data => {
+                console.log(data);
+        
+            })
+    }
 
 });
