@@ -148,13 +148,28 @@ button {
   width: 25vw; /* Adjust the width as needed */
 }
 
+
+.sidebar div {
+  display: flex;
+  justify-content: space-between;
+}
+
 .sidebar > div {
   border-bottom: 5px #fff solid;
 }
 
-.sidebar div {
-  display: flex;
-  justify-content: space-between ;
+.sidebar .DisplayVevsUser {
+  width: 40%;
+}
+
+.sidebar .DisplayVevsOpponent {
+  width: 30%;
+}
+
+.sidebar .DisplayVevsTime {
+  width: 30%;
+  min-width: 125px;
+  text-align: right;
 }
 
 

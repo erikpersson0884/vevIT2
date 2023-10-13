@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 function filterItemsByUser(inputUser, jsonArray) {
-    return jsonArray.filter(item => item.user === inputUser);
+    return jsonArray.filter(item => item.user === inputUser || item.opponent === inputUser);
 }
   
 
@@ -89,6 +89,7 @@ app.get('/getAllUsers', (req, res) => {
         res.status(500).json({ error: 'Failed to retrieve allUsers' });
     }
 });
+
 
 app.get('/getLatestVev', (req, res) => {
     // Load existing data from the events.json file (if any)

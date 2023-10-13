@@ -245,12 +245,15 @@ document.addEventListener("DOMContentLoaded", function() {
             
             // Create three p tags and set their text content
             const p1 = document.createElement("p");
+            p1.classList.add("DisplayVevsUser")
             p1.textContent = vev.user;
             
             const p2 = document.createElement("p");
+            p2.classList.add("DisplayVevsOpponent")
             p2.textContent = vev.opponent;
             
             const p3 = document.createElement("p");
+            p3.classList.add("DisplayVevsTime")
             p3.textContent = vev.time;
             
             // Append the p tags to the div
