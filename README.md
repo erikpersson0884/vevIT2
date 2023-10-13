@@ -4,7 +4,7 @@
 
 
 
-![Github version](https://img.shields.io/badge/version-0.0.0-darkblue?style=flat-square)
+![Github version](https://img.shields.io/badge/version-2.0.0-darkblue?style=flat-square)
 ![GitHub repo size](https://img.shields.io/github/repo-size/erikpersson0884/vevIT2?color=blue&style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/erikpersson0884/vevIT2?color=darkgreen&style=flat-square)
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
