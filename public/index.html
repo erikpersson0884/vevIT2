@@ -9,9 +9,9 @@
 <body>
     <div class="sidebar">
         <div class="header">
-            <h3>User</h3>
-            <h3>Opponent</h3>
-            <h3>Time</h3>
+            <h3>Utmanare</h3>
+            <h3>Motståndare</h3>
+            <h3>Tid</h3>
         </div>
         <ul id="displayVevs">
 
@@ -21,7 +21,7 @@
 
     <div id="userSelection">
         <div class="selectedUser" id="userDisplay">
-            USER
+            ANVÄNDARE
         </div>
         <div class="userDropdown" id="userDropdown">
             <input type="text" id="userSearchInput" placeholder="Search for a user">
@@ -31,12 +31,11 @@
 
 
     <div class="main-content">
-        <h1>Book a Vev</h1>
-
+        <h1>vev<span class="it">IT</span></h1>
         <h3>Välj din motståndare:</h3>
         <div id="opponentSelection">
             <div class="selectedUser" id="opponentDisplay">
-                OPPONENT
+                MOTSTÅNDARE
             </div>
             <div class="userDropdown" id="opponentDropdown">
                 <input type="text" id="opponentSearchInput" placeholder="Search for a opponent">
@@ -46,8 +45,8 @@
         
 
         <div class="select-time-div">
-            <label for="time">Tid: </label>
-            <input type="time" id="eventTimeInput" name="time">
+            <p for="time">Tid: </p>
+            <input type="datetime-local" id="eventTimeInput" name="time">
         </div>
 
         <!-- Book Button -->

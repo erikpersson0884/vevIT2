@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function() {
     const userDisplay = document.getElementById("userDisplay");
     const userDropdown = document.getElementById("userDropdown");
@@ -6,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const opponentDisplay = document.getElementById("opponentDisplay");
     const opponentDisplayDropdown = document.getElementById("opponentDropdown");
-    const opponentDisplaySearchInput = document.getElementById("opponentSearchInput");
+    const opponentSearchInput = document.getElementById("opponentSearchInput");
     const opponentList = document.getElementById("opponentList");
 
     const selectOpponentSelect = document.getElementById("selectOpponentSelect");
@@ -21,8 +22,93 @@ document.addEventListener("DOMContentLoaded", function() {
     let selectedOpponent = null; // To store the selected user
     let eventTime = null; // To storre the selected time
 
+
+
+    function getAllUsers(){
+        // GET ALL USERS
+        fetch('/getAllUsers', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Parse the response body as JSON
+            })
+            .then(data => {
+                users = data;
+                populateUserList(users);
+                populateOpponentList(users);
+            })
+    }
+
+    getAllUsers();
+
+    // Get the current date and time
+    var now = new Date();
+    // Format the date and time as a string in "YYYY-MM-DDTHH:MM" format
+    var formattedDateTime = now.toISOString().slice(0, 16);
+    // Set the value of the input element to the current date and time
+    document.getElementById("eventTimeInput").value = formattedDateTime;
+
+    function addUser() {
+        const newUserName = userSearchInput.value;
+
+        // Send a POST request to the server
+        fetch('/addUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: newUserName })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log(`${newUserName} was added`)
+            } else {
+                // Handle the error here if needed
+                console.error('Failed to book event');
+            }
+        })
+        selectedUser = {name: newUserName};
+        updateselectedUser();
+        getAllUsers();
+    }
+
+
+    function filterUsersSearch(searchInput) {
+        if (!searchInput){
+            console.log("HEJ")
+            return users;
+        }
+        const matchingUsers = users.filter(user => user.name.toLowerCase().includes(searchInput.toLowerCase()));
+        return matchingUsers;
+        
+    }
+
+
+    // Function to handle search input changes
+    function handleUserSearchInputChange() {
+        var filteredUsers = filterUsersSearch(userSearchInput.value);
+        populateUserList(filteredUsers);
+    }
+
+    function handleOpponentSearchInputChange() {
+        var filteredUsers = filterUsersSearch(opponentSearchInput.value);
+        populateOpponentList(filteredUsers);
+    }
+
+    // Add an event listener to the search input field
+    userSearchInput.addEventListener('input', handleUserSearchInputChange);
+    opponentSearchInput.addEventListener('input', handleOpponentSearchInputChange);
+
+
     // Function to update the selected user display
     function updateselectedUser() {
+        console.log(userSearchInput.value)
         showVevs()
         userDisplay.textContent = selectedUser;
     }
@@ -33,43 +119,65 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Function to populate the user list from users.json
-    function populateUserList() {
+    function populateUserList(usersToPopulate) {
         userList.innerHTML = "";
-        users.forEach(user => {
+
+
+        const maxUsersToShow = 5; // Set the maximum number of users to show
+
+        for (let i = 0; i < Math.min(maxUsersToShow, usersToPopulate.length); i++) {
+            const user = usersToPopulate[i];
+
             const listItem = document.createElement("li");
             listItem.textContent = user.name;
+        
             listItem.addEventListener("click", () => {
-                selectedUser = user.name;
+                selectedUser = user.name; // Use the formatted name
                 updateselectedUser();
                 userDropdown.style.display = "none";
             });
+        
             userList.appendChild(listItem);
-        });
+        }
+        
+
+        if (usersToPopulate.length < 5) {
+            const newUserName = userSearchInput.value;
+            const listItem = document.createElement("li");
+            listItem.textContent = `ADD USER: ${newUserName} `;
+
+            listItem.addEventListener("click", () => {
+                addUser();
+                selectedUser = newUserName; // Use the formatted name
+                updateselectedUser();
+                userDropdown.style.display = "none";
+            });
+
+            userList.appendChild(listItem);
+        }
     }
 
-    function populateOpponentList() {
+    function populateOpponentList(usersToPopulate) {
         opponentList.innerHTML = "";
-        users.forEach(user => {
+
+        const maxUsersToShow = 5; // Set the maximum number of users to show
+
+        for (let i = 0; i < Math.min(maxUsersToShow, usersToPopulate.length); i++) {
+            const user = usersToPopulate[i];
+
             const listItem = document.createElement("li");
             listItem.textContent = user.name;
+        
             listItem.addEventListener("click", () => {
-                selectedOpponent = user.name;
+                selectedOpponent = user.name; // Use the formatted name
                 updateSelectedOpponent();
                 opponentDropdown.style.display = "none";
             });
+        
             opponentList.appendChild(listItem);
-        });
+        }
     }
 
-    // Fetch user data from users.json
-    fetch('users.json')
-        .then(response => response.json())
-        .then(data => {
-            users = data;
-            populateUserList();
-            populateOpponentList();
-        })
-        .catch(error => console.error('Error fetching JSON:', error));
 
     // Event listener for displaying the dropdown when "USER" is clicked
     userDisplay.addEventListener("click", () => {
@@ -83,48 +191,6 @@ document.addEventListener("DOMContentLoaded", function() {
         opponentSearchInput.value = "";
         opponentSearchInput.focus();
     });
-
-
-    // Event listener for the search input
-    userSearchInput.addEventListener("input", () => {
-        const searchValue = userSearchInput.value.toLowerCase();
-        const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchValue));
-        populateUserList(filteredUsers);
-    });
-
-    opponentSearchInput.addEventListener("input", () => {
-        const searchValue = opponentSearchInput.value.toLowerCase();
-        const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchValue));
-        populateOpponentList(filteredUsers);
-    });
-
-    // Event listener for displaying the dropdown when "USER" is clicked
-    userDisplay.addEventListener("click", () => {
-        userDropdown.style.display = "block";
-        userSearchInput.value = "";
-        userSearchInput.focus();
-    });
-
-    opponentDisplay.addEventListener("click", () => {
-        opponentDropdown.style.display = "block";
-        opponentSearchInput.value = "";
-        opponentSearchInput.focus();
-    });
-
-    // Event listener for the search input
-    userSearchInput.addEventListener("input", () => {
-        const searchValue = userSearchInput.value.toLowerCase();
-        const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchValue));
-        populateUserList(filteredUsers);
-    });
-
-    opponentSearchInput.addEventListener("input", () => {
-        const searchValue = userSearchInput.value.toLowerCase();
-        const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchValue));
-        populateOpponentList(filteredUsers);
-    });
-
-
 
 
 
@@ -133,9 +199,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Event listener for the "Book Event" button
     bookEventButton.addEventListener("click", function() {
-        console.log(eventTime)
         eventTime = eventTimeInput.value;
-        console.log(eventTime)
+        eventTime = eventTime.replace("T", " ");
 
         if (selectedUser && selectedOpponent && eventTime) {
             // Create an object with the data to be sent to the server
@@ -214,8 +279,6 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json(); // Parse the response body as JSON
             })
             .then(data => {
-                console.log(data);
-
                 populateDisplayVevs(data);
         
             })

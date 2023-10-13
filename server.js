@@ -44,6 +44,51 @@ app.post('/bookEvent', (req, res) => {
     res.status(200).json({ message: 'Event booked successfully' });
 });
 
+// Define a route to handle the POST request for adding users 
+app.post('/addUser', (req, res) => {
+    const newUser = req.body;
+
+    // Load existing data from the users.json file (if any)
+    let usersDataArray = [];
+    try {
+        const data = fs.readFileSync('users.json', 'utf8');
+        usersDataArray = JSON.parse(data);
+    } catch (err) {
+        console.error('Error reading users.json:', err);
+    }
+
+    // Add the new event data to the array
+    usersDataArray.push(newUser);
+
+    // Write the updated data back to the events.json file
+    fs.writeFileSync('users.json', JSON.stringify(usersDataArray, null, 4), 'utf8');
+
+    // Respond with a JSON object indicating success
+    res.status(200).json({ message: 'User added successfully' });
+});
+
+app.get('/getAllUsers', (req, res) => {
+
+    let allUsers = []
+
+    try {
+        const data = fs.readFileSync('users.json', 'utf8');
+        allUsers = JSON.parse(data);
+    } catch (err) {
+        console.error('Error reading users.json:', err);
+    }
+
+    // Respond with a JSON object indicating success or error
+    if (allUsers == null) {
+        res.status(500).json({ error: "allUsers was null" });
+    } 
+    else if (allUsers) {
+        res.status(200).json(allUsers);
+    }
+    else {
+        res.status(500).json({ error: 'Failed to retrieve allUsers' });
+    }
+});
 
 app.get('/getLatestVev', (req, res) => {
     // Load existing data from the events.json file (if any)
