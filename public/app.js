@@ -145,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const newUserName = userSearchInput.value;
             const listItem = document.createElement("li");
             listItem.textContent = `ADD USER: ${newUserName} `;
+            listItem.classList.add("addUserButton");
 
             listItem.addEventListener("click", () => {
                 addUser();

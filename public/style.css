@@ -172,7 +172,13 @@ button {
   text-align: right;
 }
 
+.addUserButton {
+  background: rgb(15, 15, 63);
+}
 
+.selectedUser:hover, .selectedOpponent:hover {
+  background: rgba(65, 64, 64, 0.381);
+}
 
 
 ul {
