@@ -58,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     contrastColorPicker.addEventListener("input", () => {
         const selectedColor = contrastColorPicker.value;
-        console.log(selectedColor)
         document.documentElement.style.setProperty("--contrast-color", selectedColor);
         setCookie("contrastColor", selectedColor, 300)
     });
@@ -73,27 +72,6 @@ document.addEventListener("DOMContentLoaded", function() {
         setCookie("backgroundColor", "#000000", 300)
         setCookie("contrastColor", "#21c937", 300)
     }
-
-    //background
-    
-    backgroundColorPicker.addEventListener("input", function() {
-        const selectedColor = backgroundColorPicker.value;
-        backgroundColorPreview.style.backgroundColor = selectedColor;
-    });
-    
-
-
-    // contrast     
-    backgroundColorPicker.addEventListener("input", function() {
-        const selectedColor = backgroundColorPicker.value;
-        contrastColorPreview.style.backgroundColor = selectedColor;
-    });
-    
-
-    
-
-
-
 
 
 

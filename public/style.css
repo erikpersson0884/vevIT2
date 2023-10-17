@@ -243,7 +243,6 @@ ul {
 }
 
 #resetColorPickers {
-  background: var(--contrast-color);
   background-color: var(--contrast-color);
 
   width: 100%;
