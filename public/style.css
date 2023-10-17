@@ -39,6 +39,18 @@ h3 {
   margin-bottom: 0;
 }
 
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.pixelnheart {
+  height: 1rem;
+
+  vertical-align: middle; /* Adjust alignment as needed */
+}
+
 button {
   background-color: #424242;
   text-decoration: none;
