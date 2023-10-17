@@ -22,7 +22,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let eventTime = null; // To store the selected time
 
     let selectedUser = getCookie("user"); // To store the selected user
-    updateselectedUser();
+    if (selectedUser){
+        updateselectedUser();
+    }
 
     document.documentElement.style.setProperty("--background-color", getCookie("backgroundColor"));
     document.documentElement.style.setProperty("--contrast-color", getCookie("contrastColor"));

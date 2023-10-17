@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lumanosimo&display=swap');
 
 :root {
-  --background-color: none; /* Default color for background*/
-  --contrast-color: none; /* Default color for bookVev button and IT text*/
+  --background-color: #111317; /* Default color for background*/
+  --contrast-color: #21c937; /* Default color for bookVev button and IT text*/
 }
 
 
