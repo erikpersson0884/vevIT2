@@ -23,6 +23,27 @@ document.addEventListener("DOMContentLoaded", function() {
     let eventTime = null; // To store the selected time
 
 
+
+    // Code for the color picker to change site color
+    const backgroundColorPicker = document.getElementById("backgroundColorPicker");
+    const selectedColorDisplay = document.getElementById("contrastColorPicker");
+
+    backgroundColorPicker.addEventListener("input", () => {
+        const selectedColor = backgroundColorPicker.value;
+        document.documentElement.style.setProperty("--background-color", selectedColor);
+    });
+
+    contrastColorPicker.addEventListener("input", () => {
+        const selectedColor = selectedColorDisplay.value;
+        document.documentElement.style.setProperty("--contrast-color", selectedColor);
+    });
+
+
+
+
+
+
+
     function validateDateInput() {
         const eventTimeInput = document.getElementById('eventTimeInput');
         const currentDateTime = new Date().toISOString().slice(0, 16);

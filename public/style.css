@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Lumanosimo&display=swap');
 
-/* CSS */
-/* ... (dropdown styles) */
+:root {
+  --background-color: #000000; /* Default color for background*/
+  --contrast-color: #21c937; /* Default color for bookVev button and IT text*/
+}
 
-/* ---------------------------------------------- */
+
+
 
 body {
-  background: #111317;
+  background-color: var(--background-color);
   color: #ffffff;
   font-family: SourceSansPro, -apple-system, system-ui;
 }
@@ -29,7 +32,7 @@ h1 {
   margin-bottom: 1.4rem;
 }
 .it {
-  color: #21c937;
+  color: var(--contrast-color);
 }
 
 h3 {
@@ -72,7 +75,7 @@ button {
 
 
 .book-vev {
-  background: #21c937;
+  background-color: var(--contrast-color);
 }
 
 .book-vev:hover {
@@ -188,4 +191,38 @@ button {
 
 ul {
   padding-inline-start: 0;
+}
+
+
+
+
+
+
+#color-picker {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#color-display {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+
+
+.colorPickers {
+  /* padding: 20px; */
+  /* border: 1px solid #ddd; */
+  /* border-radius: 5px; */
+  position: absolute;
+  left: .8rem;
+  top: .8rem;
+}
+
+.colorPicker {
+  width: 5rem;
+  height: 2rem;
 }
