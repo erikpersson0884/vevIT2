@@ -31,9 +31,9 @@ app.post('/bookEvent', (req, res) => {
         const data = fs.readFileSync('events.json', 'utf8');
         eventDataArray = JSON.parse(data);
     } catch (err) {
-        console.error('Error reading events.json:', err);
+        console.error('Error reapng events.json:', err);
     }
-
+    
     // Add the new event data to the array
     eventDataArray.push(eventData);
 
@@ -106,7 +106,7 @@ app.get('/getLatestVev', (req, res) => {
 
     let events = filterItemsByUser(user, eventDataArray);
 
-
+    events = events.sort((a, b) => new Date(a.time) - new Date(b.time));
 
     // Respond with a JSON object indicating success or error
     if (user == null) {

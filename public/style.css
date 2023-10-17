@@ -145,6 +145,7 @@ button {
   margin-left: 20px; /* Adjust the margin as needed */
   position: absolute;
   right: .8rem;
+  top: .8rem;
   width: 25vw; /* Adjust the width as needed */
 }
 
@@ -180,6 +181,10 @@ button {
   background: rgba(65, 64, 64, 0.381);
 }
 
+
+.hidden {
+  display: block;
+}
 
 ul {
   padding-inline-start: 0;

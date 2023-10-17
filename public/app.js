@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
             listItem.addEventListener("click", () => {
                 selectedUser = user.name; // Use the formatted name
                 updateselectedUser();
-                userDropdown.style.display = "none";
+                userDropdown.classList.toggle("hidden");
             });
         
             userList.appendChild(listItem);
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 addUser();
                 selectedUser = newUserName; // Use the formatted name
                 updateselectedUser();
-                userDropdown.style.display = "none";
+                userDropdown.classList.toggle("hidden");
             });
 
             userList.appendChild(listItem);
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function() {
             listItem.addEventListener("click", () => {
                 selectedOpponent = user.name; // Use the formatted name
                 updateSelectedOpponent();
-                opponentDropdown.style.display = "none";
+                opponentDropdown.classList.toggle("hidden");
             });
         
             opponentList.appendChild(listItem);
@@ -188,13 +188,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Event listener for displaying the dropdown when "USER" is clicked
     userDisplay.addEventListener("click", () => {
-        userDropdown.style.display = "block";
+        userDropdown.classList.toggle("hidden");
         userSearchInput.value = "";
         userSearchInput.focus();
     });
 
     opponentDisplay.addEventListener("click", () => {
-        opponentDropdown.style.display = "block";
+        opponentDropdown.classList.toggle("hidden");
         opponentSearchInput.value = "";
         opponentSearchInput.focus();
     });
@@ -289,6 +289,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json(); // Parse the response body as JSON
             })
             .then(data => {
+                console.log(data)
                 populateDisplayVevs(data);
         
             })
