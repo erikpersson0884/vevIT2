@@ -20,9 +20,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let selectedUser = null; // To store the selected user
     let selectedOpponent = null; // To store the selected user
-    let eventTime = null; // To storre the selected time
+    let eventTime = null; // To store the selected time
 
 
+    function validateDateInput() {
+        const eventTimeInput = document.getElementById('eventTimeInput');
+        const currentDateTime = new Date().toISOString().slice(0, 16);
+        eventTimeInput.min = currentDateTime;
+    }
+    eventTimeInput.addEventListener('click', validateDateInput);
 
     function getAllUsers(){
         // GET ALL USERS
