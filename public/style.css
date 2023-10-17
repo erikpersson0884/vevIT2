@@ -226,3 +226,29 @@ ul {
   width: 5rem;
   height: 2rem;
 }
+
+
+
+/* CSS for the pop-up */
+#cookie-consent-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #f0f0f0;
+  color: #000;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+#understood-button {
+  background: #21c937;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}

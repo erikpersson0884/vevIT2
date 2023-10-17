@@ -18,9 +18,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let users = []; // To store the user data from users.json
 
-    let selectedUser = null; // To store the selected user
     let selectedOpponent = null; // To store the selected user
     let eventTime = null; // To store the selected time
+
+    let selectedUser = getCookie("user"); // To store the selected user
+    updateselectedUser();
+
+    document.documentElement.style.setProperty("--background-color", getCookie("backgroundColor"));
+    document.documentElement.style.setProperty("--contrast-color", getCookie("contrastColor"));
 
 
 
@@ -31,15 +36,40 @@ document.addEventListener("DOMContentLoaded", function() {
     backgroundColorPicker.addEventListener("input", () => {
         const selectedColor = backgroundColorPicker.value;
         document.documentElement.style.setProperty("--background-color", selectedColor);
+        setCookie("backgroundColor", selectedColor, 300)
     });
 
     contrastColorPicker.addEventListener("input", () => {
         const selectedColor = selectedColorDisplay.value;
         document.documentElement.style.setProperty("--contrast-color", selectedColor);
+        setCookie("contrastColor", selectedColor, 300)
     });
 
+    // Set a cookie with the user's name (e.g., "username")
+    function setCookie(name, value, daysToExpire) {
+        const date = new Date();
+        date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + "; " + expires;
+    }
 
+    // Get the value of a cookie by name
+    function getCookie(name) {
+        const cookieName = name + "=";
+        const cookieArray = document.cookie.split(';');
+        for (let i = 0; i < cookieArray.length; i++) {
+            let cookie = cookieArray[i].trim();
+            if (cookie.indexOf(cookieName) === 0) {
+                return cookie.substring(cookieName.length, cookie.length);
+            }
+        }
+        return "";
+    }
 
+    // Delete a cookie by setting its expiration to the past
+    function deleteCookie(name) {
+        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    }
 
 
 
@@ -109,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function filterUsersSearch(searchInput) {
         if (!searchInput){
-            console.log("HEJ")
             return users;
         }
         const matchingUsers = users.filter(user => user.name.toLowerCase().includes(searchInput.toLowerCase()));
@@ -136,9 +165,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to update the selected user display
     function updateselectedUser() {
-        console.log(userSearchInput.value)
         showVevs()
         userDisplay.textContent = selectedUser;
+        // Usage: Set a cookie with the name "username" and value "John" that expires in 30 days
+        setCookie("user", selectedUser, 300);
     }
 
     // Function to update the selected user display
@@ -311,7 +341,6 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json(); // Parse the response body as JSON
             })
             .then(data => {
-                console.log(data)
                 populateDisplayVevs(data);
         
             })
