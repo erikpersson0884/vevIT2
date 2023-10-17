@@ -108,12 +108,21 @@ app.get('/getLatestVev', (req, res) => {
 
     events = events.sort((a, b) => new Date(a.time) - new Date(b.time));
 
+    const currentDateTime = new Date();
+
+
+    const getEventDate = (event) => new Date(event.time);
+
+    // Filter events that occur in the future
+    const futureEvents = events.filter((event) => getEventDate(event) > currentDateTime);
+  
+
     // Respond with a JSON object indicating success or error
     if (user == null) {
         res.status(500).json({ error: "User was null" });
     } 
     else if (events) {
-        res.status(200).json(events);
+        res.status(200).json(futureEvents);
     }
     else {
         res.status(500).json({ error: 'Failed to retrieve events' });

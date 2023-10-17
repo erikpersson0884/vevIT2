@@ -53,10 +53,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     getAllUsers();
 
-    // Get the current date and time
-    var now = new Date();
+    // Get the current date and time in Sweden
+    const now = new Date();
+    const swedishNow = new Date(now.toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm' }));
     // Format the date and time as a string in "YYYY-MM-DDTHH:MM" format
-    var formattedDateTime = now.toISOString().slice(0, 16);
+    const formattedDateTime = swedishNow.toLocaleString('sv-SE').slice(0, 16);
     // Set the value of the input element to the current date and time
     document.getElementById("eventTimeInput").value = formattedDateTime;
 
