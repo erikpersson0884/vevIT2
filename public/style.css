@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lumanosimo&display=swap');
 
 :root {
-  --background-color: #000000; /* Default color for background*/
-  --contrast-color: #21c937; /* Default color for bookVev button and IT text*/
+  --background-color: none; /* Default color for background*/
+  --contrast-color: none; /* Default color for bookVev button and IT text*/
 }
 
 
@@ -89,7 +89,7 @@ button {
 #userSelection, #opponentSelection {
   text-align: center;
 }
-#userSelection {
+#userSelection {  
   max-width: 300px;
   margin-inline: auto;
 }
@@ -197,34 +197,49 @@ ul {
 
 
 
-
-#color-picker {
-  padding: 10px 20px;
-  background-color: #3498db;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-#color-display {
-  margin-top: 20px;
-  font-size: 20px;
-}
-
-
-
-.colorPickers {
-  /* padding: 20px; */
-  /* border: 1px solid #ddd; */
-  /* border-radius: 5px; */
+.colorDiv {
   position: absolute;
   left: .8rem;
-  top: .8rem;
+  top: .8rem;  
+}
+
+.colorPickers {
+  display: flex;
+  gap: .5rem;
 }
 
 .colorPicker {
-  width: 5rem;
-  height: 2rem;
+  display: none; /* Hide the default color picker input */
+}
+
+
+.colorPreview {
+  width: 3rem;
+  height: 1.35rem;
+  padding: 0.0625rem 0.125rem;
+  border: 0.25rem solid #ccc;
+  border-radius: .2rem;
+
+  cursor: pointer;
+}
+
+#backgroundColorPreview {
+  background: var(--background-color);
+}
+#contrastColorPreview {
+  background: var(--contrast-color);
+}
+
+#resetColorPickers {
+  background: var(--contrast-color);
+  background-color: var(--contrast-color);
+
+  width: 100%;
+  margin-top: .4rem;
+}
+
+#resetColorPickers:hover {
+  background: #21c937;
 }
 
 
