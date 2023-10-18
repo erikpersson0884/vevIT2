@@ -1,0 +1,11 @@
+{
+    "name": "vevIT",
+    "short_name": "vevIT",
+    "description": "A Progressive Web App to book vev in the sandlådan",
+    "start_url": "/index.html",
+    "display": "fullscreen",
+    "background_color": "#09cdda",
+    "theme_color": "yellow",
+    "orientation": "any"
+}
+  

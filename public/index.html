@@ -2,11 +2,30 @@
 <html>
 <head>
     <title>vevIT</title>
+    <link rel="icon" type="image/png" href="images/it-square.png">
+    <meta name="description" content="A page to book vev in the sandlådan">
+
+    <meta name="theme-color" content="#09cdda">
+
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="mobile.css">
 
     <script src="cookiePopUp.js" defer></script>
     <script src="app.js"defer></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(function(registration) {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(function(error) {
+              console.error('Service Worker registration failed:', error);
+            });
+        }
+      </script>
+
+    <link rel="manifest" href="/manifest.json">
 </head>
 
 
