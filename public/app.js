@@ -127,8 +127,8 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(data => {
                 users = data;
-                populateUserList(users);
-                populateOpponentList(users);
+                populateUserList();
+                populateOpponentList();
             })
     }
 
@@ -177,27 +177,17 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-    // Function to handle search input changes
-    function handleUserSearchInputChange() {
-        var filteredUsers = filterUsersSearch(userSearchInput.value);
-        populateUserList(filteredUsers);
-    }
-
-    function handleOpponentSearchInputChange() {
-        var filteredUsers = filterUsersSearch(opponentSearchInput.value);
-        populateOpponentList(filteredUsers);
-    }
 
     // Add an event listener to the search input field
-    userSearchInput.addEventListener('input', handleUserSearchInputChange);
-    opponentSearchInput.addEventListener('input', handleOpponentSearchInputChange);
+    userSearchInput.addEventListener('input', populateUserList);
+    opponentSearchInput.addEventListener('input', populateOpponentList);
 
 
     // Function to update the selected user display
     function updateselectedUser() {
         showVevs()
         userDisplay.textContent = selectedUser;
-        // Usage: Set a cookie with the name "username" and value "John" that expires in 30 days
+        userSearchInput.value = null;
         setCookie("user", selectedUser, 300);
     }
 
@@ -207,15 +197,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Function to populate the user list from users.json
-    function populateUserList(usersToPopulate) {
+    function populateUserList() {
         userList.innerHTML = "";
 
+        var filteredUsers = filterUsersSearch(userSearchInput.value);
+        console.log(userSearchInput.value)
 
-        const maxUsersToShow = 5; // Set the maximum number of users to show
-
-        for (let i = 0; i < Math.min(maxUsersToShow, usersToPopulate.length); i++) {
-            const user = usersToPopulate[i];
-
+        filteredUsers.forEach(user => {
             const listItem = document.createElement("li");
             listItem.textContent = user.name;
         
@@ -226,10 +214,9 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         
             userList.appendChild(listItem);
-        }
+        });
         
-
-        if (usersToPopulate.length < 5) {
+        if (userSearchInput.value) {
             const newUserName = userSearchInput.value;
             const listItem = document.createElement("li");
             listItem.textContent = `ADD USER: ${newUserName} `;
@@ -244,27 +231,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
             userList.appendChild(listItem);
         }
+        
     }
 
-    function populateOpponentList(usersToPopulate) {
+    function populateOpponentList() {
         opponentList.innerHTML = "";
 
-        const maxUsersToShow = 5; // Set the maximum number of users to show
+        var filteredOpponents = filterUsersSearch(opponentSearchInput.value);
 
-        for (let i = 0; i < Math.min(maxUsersToShow, usersToPopulate.length); i++) {
-            const user = usersToPopulate[i];
-
+        filteredOpponents.forEach(opponent => {
             const listItem = document.createElement("li");
-            listItem.textContent = user.name;
+            listItem.textContent = opponent.name;
         
             listItem.addEventListener("click", () => {
-                selectedOpponent = user.name; // Use the formatted name
+                selectedOpponent = opponent.name; // Use the formatted name
                 updateSelectedOpponent();
                 opponentDropdown.classList.toggle("hidden");
             });
         
             opponentList.appendChild(listItem);
-        }
+        });
     }
 
 
@@ -272,6 +258,7 @@ document.addEventListener("DOMContentLoaded", function() {
     userDisplay.addEventListener("click", () => {
         userDropdown.classList.toggle("hidden");
         userSearchInput.value = "";
+        populateUserList();
         userSearchInput.focus();
     });
 
@@ -279,6 +266,7 @@ document.addEventListener("DOMContentLoaded", function() {
         opponentDropdown.classList.toggle("hidden");
         opponentSearchInput.value = "";
         opponentSearchInput.focus();
+        populateOpponentList();
     });
 
 

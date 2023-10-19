@@ -7,11 +7,18 @@
 
 
 
-
 body {
   background-color: var(--background-color);
   color: #ffffff;
   font-family: SourceSansPro, -apple-system, system-ui;
+
+  margin: 0;
+  padding: 1rem;
+  position: relative;
+  min-height: calc(100vh - 2rem)  ;
+
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+
 }
 
 .main-content {
@@ -22,7 +29,8 @@ body {
   width: 13rem;
   height: auto;
   padding: 2rem;
-  margin: 18vh auto;
+  margin-top: 22vh;
+  margin-inline: auto;
 }
 
 h1 {
@@ -40,9 +48,15 @@ h3 {
 }
 
 footer {
+  position: absolute;
+  bottom: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  text-align: center;
+}
+
+.hiddenLink {
+  text-decoration: none; /* Remove underline */
+  color: #fff; /* Change link color */
 }
 
 .pixelnheart {
@@ -50,6 +64,22 @@ footer {
 
   vertical-align: middle; /* Adjust alignment as needed */
 }
+
+/* Normal state */
+.pixelnheart:hover {
+  transform: rotate(360deg);
+  transition: transform 0.5s; /* Add a transition for a smooth effect */
+}
+
+.goken {
+  color: #09cdda;
+}
+
+.goken:hover {
+  color: rgb(108, 245, 255);
+}
+
+
 
 button {
   background-color: #424242;
@@ -137,10 +167,12 @@ button {
   margin: 0;
   overflow-y: auto;
   border: 1px solid #ccc;
+  max-height: 8.3125rem;
 }
 
 #userList li, #opponentList li {
-  padding: 5px;
+  height:  1.35rem;
+  padding: 0.3125rem;
   cursor: pointer;
 }
 
@@ -148,6 +180,18 @@ button {
   background-color: #f0f0f0;
   color: #000;
 }
+
+
+#userDropdown {
+  position: absolute;
+  width: 300px;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+
 
 
 
@@ -201,9 +245,6 @@ button {
   display: block;
 }
 
-ul {
-  padding-inline-start: 0;
-}
 
 
 
@@ -277,4 +318,17 @@ ul {
   cursor: pointer;
   border-radius: 5px;
   margin-top: 10px;
+}
+
+
+
+
+
+
+ul {
+  padding-inline-start: 0;
+}
+
+footer p {
+  margin-top: 0;
 }

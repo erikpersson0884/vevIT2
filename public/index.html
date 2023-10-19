@@ -13,7 +13,7 @@
     <script src="cookiePopUp.js" defer></script>
     <script src="app.js"defer></script>
 
-    <script>
+    <!-- <script>
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker.register('/service-worker.js')
             .then(function(registration) {
@@ -25,7 +25,7 @@
         }
       </script>
 
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.json"> -->
 </head>
 
 
@@ -52,7 +52,7 @@
             ANVÄNDARE
         </div>
         <div class="userDropdown" id="userDropdown">
-            <input type="text" id="userSearchInput" placeholder="Search for a user">
+            <input type="text" id="userSearchInput"  placeholder="Search for a user" autocomplete="off">
             <ul id="userList"></ul>
         </div>
     </div>
@@ -65,7 +65,7 @@
                 MOTSTÅNDARE
             </div>
             <div class="userDropdown" id="opponentDropdown">
-                <input type="text" id="opponentSearchInput" placeholder="Search for a opponent">
+                <input type="text" id="opponentSearchInput" placeholder="Search for a opponent" autocomplete="off">
                 <ul id="opponentList"></ul>
             </div>
         </div>
@@ -92,7 +92,15 @@
     </div>
 
     <footer>
-        <p>Made with <img class="pixelnheart" src="images/pixelnheart.png" alt="pixelnheart"> by Göken </p>
+        <p>Made with 
+            <a href="https://wiki.chalmers.it/index.php/Pixeln" class="hiddenLink">
+                <img class="pixelnheart" src="images/pixelnheart.png" alt="pixelnheart">
+            </a> 
+             by 
+            <a href="https://wiki.chalmers.it/index.php/G%C3%B6ken" class="hiddenLink goken">
+                Göken
+            </a>
+        </p>
     </footer>
     
 </body>
