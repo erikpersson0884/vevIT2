@@ -72,7 +72,7 @@ footer {
 }
 
 .goken {
-  color: #09cdda;
+  color: var(--contrast-color);
 }
 
 .goken:hover {
