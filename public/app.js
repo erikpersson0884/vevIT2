@@ -14,7 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const eventTimeInput = document.getElementById("eventTimeInput");
     const bookEventButton = document.getElementById("bookVevButton");
 
-    const displayVevsUl = document.getElementById("displayVevs");
+    const futureVevsUl = document.getElementById("futureVevs");
+    const pastVevsUl = document.getElementById("pastVevs");
+
 
     let users = []; // To store the user data from users.json
 
@@ -102,6 +104,30 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
+
+    function updateWinner(vev, winner) {
+        // Send a POST request to the server
+        eventData = {
+            vev: vev,
+            winner: winner
+        }
+        fetch('/updateWinner', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(eventData)
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log(`winner was added`)
+                showVevs();
+            } else {
+                // Handle the error here if needed
+                console.error('Failed to update winner');
+            }
+        });
+    }
 
 
     function validateDateInput() {
@@ -201,7 +227,6 @@ document.addEventListener("DOMContentLoaded", function() {
         userList.innerHTML = "";
 
         var filteredUsers = filterUsersSearch(userSearchInput.value);
-        console.log(userSearchInput.value)
 
         filteredUsers.forEach(user => {
             const listItem = document.createElement("li");
@@ -281,14 +306,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (selectedUser && selectedOpponent && eventTime) {
             // Create an object with the data to be sent to the server
+            const currentTime = new Date();
             const eventData = {
                 user: selectedUser, // Include the selected user
                 opponent: selectedOpponent,
+                winner: null,
+                bookingTime: currentTime,
                 time: eventTime
             };
 
             // Send a POST request to the server
-            fetch('/bookEvent', {
+            fetch('/bookVev', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -309,28 +337,88 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    
-    function populateDisplayVevs(vevs){
-        while (displayVevsUl.firstChild) {
-            displayVevsUl.removeChild(displayVevsUl.firstChild);
+    function populatePastVevs(vevs) {
+        while (pastVevsUl.firstChild) {
+            pastVevsUl.removeChild(pastVevsUl.firstChild);
         }
 
         vevs.forEach(function(vev){
             // Create a div element
             const div = document.createElement("div");
-            div.classList.add("displayVevsLi")
+            div.classList.add("pastVevsLi")
             
             // Create three p tags and set their text content
             const p1 = document.createElement("p");
-            p1.classList.add("DisplayVevsUser")
+            p1.classList.add("pastVevsUser")
+            p1.textContent = vev.user;
+            p1.addEventListener("click", function() {
+                updateWinner(vev, vev.user);
+              });
+            
+            const p2 = document.createElement("p");
+            p2.classList.add("pastVevsOpponent")
+            p2.textContent = vev.opponent;
+            p2.addEventListener("click", function() {
+                updateWinner(vev, vev.opponent);
+            });
+
+            const p3 = document.createElement("p");
+            p3.classList.add("pastVevsTime")
+            p3.textContent = vev.time;
+            
+            // if (vev.user === vev.opponent) { // For my favorite user of this fine website, the ones that whishes to fight themself ˘‿˘ 
+            //     if (vev.winner === null) {
+            //         p1.classList.add("loser");
+            //         p2.classList.add("loser");
+            //     } else {
+            //         p1.classList.add("winner");
+            //         p2.classList.add("winner");
+            //     }
+            // } 
+            // else if (vev.user === vev.winner) {
+            //     p1.classList.add("winner");
+            //     p2.classList.add("loser");
+            // } 
+            // else if (vev.opponent === vev.winner) {
+            //     p2.classList.add("winner");
+            //     p1.classList.add("loser");
+            // }
+
+            // Append the p tags to the div
+            div.appendChild(p1);
+            div.appendChild(p2);
+            div.appendChild(p3);
+
+            if (selectedUser === vev.winner) {
+                div.classList.add("winner")
+            }
+
+            // Append the div to the container
+            pastVevsUl.appendChild(div);
+        });
+    }
+    
+    function populatefutureVevs(vevs){
+        while (futureVevsUl.firstChild) {
+            futureVevsUl.removeChild(futureVevsUl.firstChild);
+        }
+
+        vevs.forEach(function(vev){
+            // Create a div element
+            const div = document.createElement("div");
+            div.classList.add("futureVevsLi")
+            
+            // Create three p tags and set their text content
+            const p1 = document.createElement("p");
+            p1.classList.add("futureVevsUser")
             p1.textContent = vev.user;
             
             const p2 = document.createElement("p");
-            p2.classList.add("DisplayVevsOpponent")
+            p2.classList.add("futureVevsOpponent")
             p2.textContent = vev.opponent;
             
             const p3 = document.createElement("p");
-            p3.classList.add("DisplayVevsTime")
+            p3.classList.add("futureVevsTime")
             p3.textContent = vev.time;
             
             // Append the p tags to the div
@@ -339,13 +427,13 @@ document.addEventListener("DOMContentLoaded", function() {
             div.appendChild(p3);
         
             // Append the div to the container
-            displayVevsUl.appendChild(div);
+            futureVevsUl.appendChild(div);
         });
     };
 
     function showVevs(){
         // GET THE BOOKED VEV
-        fetch('/getLatestVev', {
+        fetch('/getAllVevs', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -359,8 +447,37 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json(); // Parse the response body as JSON
             })
             .then(data => {
-                populateDisplayVevs(data);
+                const events = sortEventOnTime(data);
+                populatePastVevs(events.pastEvents);
+                populatefutureVevs(events.futureEvents);
         
             })
     }
+
+
+
+    function sortEventOnTime(events) {
+        pastEvents = [];
+        futureEvents = [];
+        const getEventDate = (event) => new Date(event.time);
+
+        const currentDateTime = new Date();
+        
+        
+        events.forEach(event => {
+            if (getEventDate(event) < currentDateTime) {     
+                // Event is in the past
+                pastEvents.push(event);
+            } else {
+            // Event is in the future
+            futureEvents.push(event);
+            }
+        });
+        return {
+            pastEvents,
+            futureEvents
+        };
+
+    }
+
 });

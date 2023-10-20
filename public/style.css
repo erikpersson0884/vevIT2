@@ -5,7 +5,7 @@
   --contrast-color: #21c937; /* Default color for bookVev button and IT text*/
 }
 
-
+ /* Code for main html tags */
 
 body {
   background-color: var(--background-color);
@@ -21,67 +21,7 @@ body {
 
 }
 
-.main-content {
-  background: #2b303a;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 13rem;
-  height: auto;
-  padding: 2rem;
-  margin-top: 22vh;
-  margin-inline: auto;
-}
-
-h1 {
-  font-family: Lumanosimo;
-  font-size: 3.5rem;
-  margin-top: 0;
-  margin-bottom: 1.4rem;
-}
-.it {
-  color: var(--contrast-color);
-}
-
-h3 {
-  margin-bottom: 0;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-}
-
-.hiddenLink {
-  text-decoration: none; /* Remove underline */
-  color: #fff; /* Change link color */
-}
-
-.pixelnheart {
-  height: 1rem;
-
-  vertical-align: middle; /* Adjust alignment as needed */
-}
-
-/* Normal state */
-.pixelnheart:hover {
-  transform: rotate(360deg);
-  transition: transform 0.5s; /* Add a transition for a smooth effect */
-}
-
-.goken {
-  color: var(--contrast-color);
-}
-
-.goken:hover {
-  color: rgb(108, 245, 255);
-}
-
-
-
-button {
+.button {
   background-color: #424242;
   text-decoration: none;
   padding: 5pt;
@@ -93,167 +33,16 @@ button {
   position: relative;
 }
 
-.select-student-button {
-  background: #fff;
-  font-size: 1.15rem;
-  display: flex;
-  line-height: normal;
-  width: 11.7rem;
-  height: 2rem;
-  text-align: center;
-  margin-bottom: 1.4rem;
-}
-
-.select-time-div  {
-  display: flex;
-
-  justify-content: space-evenly;
-  align-items:center;
-  height: 1.5rem;
-  width: 100%;
-  margin-bottom: 1em;
-}
 
 
-
-.book-vev {
-  background-color: var(--contrast-color);
-}
-
-.book-vev:hover {
-  color: #444;
-}
-
-.book-vev:active {
-  background: #fff;
-}
-
-#userSelection, #opponentSelection {
-  text-align: center;
-}
-#userSelection {  
-  max-width: 300px;
-  margin-inline: auto;
-}
-#opponentSelection {
-  margin: .5rem;
-}
-
-#opponentSelection {
-  margin-bottom: 10px;
-}
-
-.selectedUser, .selectedOpponent {
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-}
-
-.userDropdown, .opponentDropdown {
-  display: none;
-  text-align: center;
-  margin-bottom: 4px;
-}
-
-#userSearchInput, #opponentSearchInput{
-  width: calc(100% - 10px - 3.2px);
-  padding: 5px;
-}
-
-#userList, #opponentList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  overflow-y: auto;
-  border: 1px solid #ccc;
-  max-height: 8.3125rem;
-}
-
-#userList li, #opponentList li {
-  height:  1.35rem;
-  padding: 0.3125rem;
-  cursor: pointer;
-}
-
-#userList li:hover, #opponentList li:hover {
-  background-color: #f0f0f0;
-  color: #000;
-}
-
-
-#userDropdown {
-  position: absolute;
-  width: 300px;
-  padding: 0;
-  margin: 0;
-}
-
-
-
-
-
-
-
-/* Style for the sidebar */
-
-.sidebar {
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-left: 20px; /* Adjust the margin as needed */
-  position: absolute;
-  right: .8rem;
-  top: .8rem;
-  width: 25vw; /* Adjust the width as needed */
-}
-
-
-.sidebar div {
-  display: flex;
-  justify-content: space-between;
-}
-
-.sidebar > div {
-  border-bottom: 5px #fff solid;
-}
-
-.sidebar .DisplayVevsUser {
-  width: 40%;
-}
-
-.sidebar .DisplayVevsOpponent {
-  width: 30%;
-}
-
-.sidebar .DisplayVevsTime {
-  width: 30%;
-  min-width: 125px;
-  text-align: right;
-}
-
-.addUserButton {
-  background: rgb(15, 15, 63);
-}
-
-.selectedUser:hover, .selectedOpponent:hover {
-  background: rgba(65, 64, 64, 0.381);
-}
-
-
-.hidden {
-  display: block;
-}
-
-
-
+/* Code for color picker */
 
 
 
 .colorDiv {
   position: absolute;
   left: .8rem;
-  top: .8rem;  
+  bottom: .8rem;  
 }
 
 .colorPickers {
@@ -264,7 +53,6 @@ button {
 .colorPicker {
   display: none; /* Hide the default color picker input */
 }
-
 
 .colorPreview {
   width: 3rem;
@@ -296,7 +84,230 @@ button {
 
 
 
-/* CSS for the pop-up */
+/* Style for the sidebar */
+
+.pastVevSidebar{
+  position: absolute;
+  left: .8rem;
+  top: .8rem;
+}
+
+.upcomingVevSidebar{
+  position: absolute;
+  right: .8rem;
+  top: .8rem;
+}
+
+.sidebar {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 25vw; /* Adjust the width as needed */
+}
+
+
+.sidebar div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar > div {
+  border-bottom: 5px #fff solid;
+}
+
+.displayVevs {
+  max-height: 40rem;
+}
+
+.sidebar .DisplayVevsUser {
+  width: 40%;
+}
+
+.sidebar .DisplayVevsOpponent {
+  width: 30%;
+}
+
+.sidebar .DisplayVevsTime {
+  width: 30%;
+  min-width: 125px;
+  text-align: right;
+}
+
+
+
+/* Code for main-content */
+
+.main-content {
+  background: #2b303a;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 13rem;
+  height: auto;
+  padding: 2rem;
+  margin-top: 22vh;
+  margin-inline: auto;
+}
+
+h1 {
+  font-family: Lumanosimo;
+  font-size: 3.5rem;
+  margin-top: 0;
+  margin-bottom: 1.4rem;
+}
+.it {
+  color: var(--contrast-color);
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+
+.select-student-button {
+  background: #fff;
+  font-size: 1.15rem;
+  display: flex;
+  line-height: normal;
+  width: 11.7rem;
+  height: 2rem;
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+
+.select-time-div  {
+  display: flex;
+
+  justify-content: space-evenly;
+  align-items:center;
+  height: 1.5rem;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.book-vev {
+  background-color: var(--contrast-color);
+}
+
+.book-vev:hover {
+  color: #444;
+}
+
+
+/* Code for footer */
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.hiddenLink {
+  text-decoration: none; /* Remove underline */
+  color: #fff; /* Change link color */
+}
+
+.pixelnheart {
+  height: 1rem;
+
+  vertical-align: middle; /* Adjust alignment as needed */
+}
+
+.pixelnheart:hover {
+  transform: rotate(360deg);
+  transition: transform 0.5s; /* Add a transition for a smooth effect */
+}
+
+.goken {
+  color: var(--contrast-color);
+}
+
+.goken:hover {
+  color: rgb(108, 245, 255);
+}
+
+
+
+
+/* Code for user and opponent selection */
+
+.book-vev:active {
+  background: #fff;
+}
+
+.player-selection {
+  text-align: center;
+}
+
+#userSelection {  
+  max-width: 300px;
+  margin-inline: auto;
+}
+
+#opponentSelection {
+  margin: .5rem;
+  margin-bottom: 10px;
+}
+
+.selectedPlayer {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.playerDropdown {
+  display: none;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.playerSearchInput{
+  width: calc(100% - 10px - 3.2px);
+  padding: 5px;
+}
+
+.playerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  max-height: 9.875rem;
+}
+
+.playerList li {
+  height:  1.35rem;
+  padding: 0.3125rem;
+  cursor: pointer;
+}
+
+.playerList li:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+
+#userDropdown {
+  position: absolute;
+  width: 300px;
+  padding: 0;
+  margin: 0;
+}
+
+.addUserButton {
+  background: rgb(15, 15, 63);
+}
+
+/* .selectedUser:hover, .selectedOpponent:hover {
+  background: rgba(65, 64, 64, 0.381);
+} */
+
+
+
+/* CSS FOR COOKIE POPUP */
+
 #cookie-consent-popup {
   display: none;
   position: fixed;
@@ -322,8 +333,45 @@ button {
 
 
 
+/* CSS for howto */
+
+.howto {
+  background: var(--contrast-color);
+  position:absolute;
+  bottom: .8rem;
+  right: .8rem;
+  text-decoration: none;
+
+  font-family: monospace; /* Use a monospace font */
+  padding: 2px 4px; /* Add some padding for a better visual appearance */
+  border: 1px solid #ccc; /* Add a border to distinguish it further */
+  border-radius: 4px; /* Round the corners */
+}
+.howto a {
+  color: #000;
+}
 
 
+
+/* CSS FOR MISC */
+
+.hidden {
+  display: block;
+}
+
+.winner {
+  color: #21c937;
+}
+
+.loser {
+  color: red;
+}
+
+.playerWinner {
+  background: var(--contrast-color);
+}
+
+/* CSS RESETTER */
 
 ul {
   padding-inline-start: 0;
@@ -332,3 +380,6 @@ ul {
 footer p {
   margin-top: 0;
 }
+
+
+
