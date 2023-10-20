@@ -43,6 +43,7 @@ body {
   position: absolute;
   left: .8rem;
   bottom: .8rem;  
+  z-index: 40;
 }
 
 .colorPickers {
@@ -199,9 +200,11 @@ h3 {
 footer {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   text-align: center;
 }
+
 
 .hiddenLink {
   text-decoration: none; /* Remove underline */

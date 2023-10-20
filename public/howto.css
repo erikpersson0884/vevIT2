@@ -1,3 +1,5 @@
+@import url(style.css);
+
 body {
     background-color: #0f0f0f;
     font-family: Arial, sans-serif;
@@ -19,9 +21,8 @@ body {
     flex: 1;
     text-align: center;
     padding: 1rem;
-    background-color: #fff;
     border-radius: 0.5rem;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.364);
   }
   
   .howtoImage img {
@@ -52,6 +53,8 @@ body {
   
   #description {
     color: #333;
+    color: #dcdcdc;
+
     font-size: 1.5rem;
     text-align: center;
     margin: 1rem 0;

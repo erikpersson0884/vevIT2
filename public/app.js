@@ -391,7 +391,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (selectedUser === vev.winner) {
                 div.classList.add("winner")
+            } else if (vev.opponent === vev.winner) {
+                div.classList.add("loser")
             }
+
 
             // Append the div to the container
             pastVevsUl.appendChild(div);
