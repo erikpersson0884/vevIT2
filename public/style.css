@@ -87,13 +87,13 @@ body {
 
 /* Style for the sidebar */
 
-.pastVevSidebar{
+.upcomingVevSidebar{
   position: absolute;
   left: .8rem;
   top: .8rem;
 }
 
-.upcomingVevSidebar{
+.pastVevSidebar{
   position: absolute;
   right: .8rem;
   top: .8rem;

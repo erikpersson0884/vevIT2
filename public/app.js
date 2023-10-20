@@ -349,21 +349,21 @@ document.addEventListener("DOMContentLoaded", function() {
             
             // Create three p tags and set their text content
             const p1 = document.createElement("p");
-            p1.classList.add("pastVevsUser")
+            p1.classList.add("DisplayVevsUser")
             p1.textContent = vev.user;
             p1.addEventListener("click", function() {
                 updateWinner(vev, vev.user);
               });
             
             const p2 = document.createElement("p");
-            p2.classList.add("pastVevsOpponent")
+            p2.classList.add("DisplayVevsOpponent")
             p2.textContent = vev.opponent;
             p2.addEventListener("click", function() {
                 updateWinner(vev, vev.opponent);
             });
 
             const p3 = document.createElement("p");
-            p3.classList.add("pastVevsTime")
+            p3.classList.add("DisplayVevsTime")
             p3.textContent = vev.time;
             
             // if (vev.user === vev.opponent) { // For my favorite user of this fine website, the ones that whishes to fight themself ˘‿˘ 
@@ -413,15 +413,15 @@ document.addEventListener("DOMContentLoaded", function() {
             
             // Create three p tags and set their text content
             const p1 = document.createElement("p");
-            p1.classList.add("futureVevsUser")
+            p1.classList.add("DisplayVevsUser")
             p1.textContent = vev.user;
             
             const p2 = document.createElement("p");
-            p2.classList.add("futureVevsOpponent")
+            p2.classList.add("DisplayVevsOpponent")
             p2.textContent = vev.opponent;
             
             const p3 = document.createElement("p");
-            p3.classList.add("futureVevsTime")
+            p3.classList.add("DisplayVevsTime")
             p3.textContent = vev.time;
             
             // Append the p tags to the div
