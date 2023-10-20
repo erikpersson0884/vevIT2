@@ -136,9 +136,9 @@ app.get('/getAllUsers', (req, res) => {
 
 
 app.get('/getAllVevs', (req, res) => {
-    // Load existing data from the events.json file (if any)
-    const user = req.headers.user; // Extract user from request headers
+    const user = req.headers.user;
     let eventDataArray = [];
+    let events = [];
 
     try {
         const data = fs.readFileSync('events.json', 'utf8');
@@ -147,9 +147,9 @@ app.get('/getAllVevs', (req, res) => {
         console.error('Error reading events.json:', err);
     }
 
-    let events = eventDataArray;
+    events = eventDataArray;
 
-    if (user !== null){
+    if (user !== "none"){
         events = filterItemsByUser(user, eventDataArray);
     }
 

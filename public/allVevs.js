@@ -15,25 +15,19 @@ document.addEventListener("DOMContentLoaded", function() {
         vevs.forEach(function(vev){
             // Create a div element
             const div = document.createElement("div");
-            div.classList.add("pastVevsLi")
+            div.classList.add("futureVevsLi")
             
             // Create three p tags and set their text content
             const p1 = document.createElement("p");
-            p1.classList.add("pastVevsUser")
+            p1.classList.add("DisplayVevsUser")
             p1.textContent = vev.user;
-            p1.addEventListener("click", function() {
-                updateWinner(vev, vev.user);
-              });
             
             const p2 = document.createElement("p");
-            p2.classList.add("pastVevsOpponent")
+            p2.classList.add("DisplayVevsOpponent")
             p2.textContent = vev.opponent;
-            p2.addEventListener("click", function() {
-                updateWinner(vev, vev.opponent);
-            });
-
+            
             const p3 = document.createElement("p");
-            p3.classList.add("pastVevsTime")
+            p3.classList.add("DisplayVevsTime")
             p3.textContent = vev.time;
             
             if (vev.user === vev.opponent) { // For my favorite user of this fine website, the ones that whishes to fight themself ˘‿˘ 
@@ -74,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'user': null
+                'user': "none"
             },
         })
             .then(response => {

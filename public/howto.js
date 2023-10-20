@@ -43,12 +43,12 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         {
             "id": 7,
-            "img": "4.png",
+            "img": "2.png",
             "description": "Här ser du vilka tidigare vev du haft, klicka på den användare som vunnit för att ställa in den som vinnare. Är det markerat med grönt innebär det att du vunnit!"
         },
         {
             "id": 8,
-            "img": "2.png",
+            "img": "4.png",
             "description": "Här klickar du för att ändra bakgrund och kontrastfärg för sidan."
         }
     ];
