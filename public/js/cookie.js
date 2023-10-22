@@ -26,21 +26,21 @@ function deleteCookie(name) {
     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 }
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     const popup = document.getElementById("cookie-consent-popup");
-//     const understoodButton = document.getElementById("understood-button");
+document.addEventListener("DOMContentLoaded", function() {
+    const popup = document.getElementById("cookie-consent-popup");
+    const understoodButton = document.getElementById("understood-button");
 
-//     // Check if the user has already accepted cookies
-//     const hasAcceptedCookies = document.cookie.includes("cookiesAccepted=true");
+    // Check if the user has already accepted cookies
+    const hasAcceptedCookies = document.cookie.includes("cookiesAccepted=true");
 
-//     if (!hasAcceptedCookies) {
-//         popup.style.display = "block";
-//     }
+    if (!hasAcceptedCookies) {
+        popup.style.display = "block";
+    }
 
-//     understoodButton.addEventListener("click", function() {
-//         popup.style.display = "none";
-//         // Set a cookie to remember that the user has accepted cookies
-//         document.cookie = "cookiesAccepted=true; expires=365; path=/";
-//     });
-// });
+    understoodButton.addEventListener("click", function() {
+        popup.style.display = "none";
+        // Set a cookie to remember that the user has accepted cookies
+        document.cookie = "cookiesAccepted=true; expires=365; path=/";
+    });
+});
 
