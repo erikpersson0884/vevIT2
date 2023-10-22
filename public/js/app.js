@@ -41,8 +41,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const contrastColorPreview = document.getElementById("contrastColorPreview");
 
     const resetColorPickers = document.getElementById("resetColorPickers")
+    
 
-
+    
     // Trigger the custom color pickers when the previews is clicked
     backgroundColorPreview.addEventListener("click", function() {
         backgroundColorPicker.click(); // Trigger the custom color picker when the preview is clicked

@@ -52,8 +52,14 @@ body {
 }
 
 .colorPicker {
-  display: none; /* Hide the default color picker input */
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none; /* Disable pointer events for hidden inputs */
+  z-index: 0;
 }
+
+
 
 .colorPreview {
   width: 3rem;
@@ -63,6 +69,8 @@ body {
   border-radius: .2rem;
 
   cursor: pointer;
+  z-index: 4;
+
 }
 
 #backgroundColorPreview {
