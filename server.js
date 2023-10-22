@@ -16,7 +16,18 @@ function filterItemsByUser(inputUser, jsonArray) {
     return jsonArray.filter(item => item.user === inputUser || item.opponent === inputUser);
 }
   
+function hasDuplicateEvent(eventDataArray, eventData) {
+    // Use the Array.prototype.some() method to check if there is any element in the array
+    // that matches the given conditions.
+    return eventDataArray.some(event => {
+        const isDuplicate =
+        (event.user === eventData.user && event.opponent === eventData.opponent) ||
+        (event.user === eventData.opponent && event.opponent === eventData.user);
+        
+      return isDuplicate && event.time === eventData.time;
 
+    });
+  }
 
   
 
@@ -34,14 +45,20 @@ app.post('/bookVev', (req, res) => {
         console.error('Error reapng events.json:', err);
     }
     
-    // Add the new event data to the array
-    eventDataArray.push(eventData);
+    if (!hasDuplicateEvent(eventDataArray, eventData)){
+        // Add the new event data to the array
+        eventDataArray.push(eventData);
 
-    // Write the updated data back to the events.json file
-    fs.writeFileSync('events.json', JSON.stringify(eventDataArray, null, 4), 'utf8');
+        // Write the updated data back to the events.json file
+        fs.writeFileSync('events.json', JSON.stringify(eventDataArray, null, 4), 'utf8');
 
-    // Respond with a JSON object indicating success
-    res.status(200).json({ message: 'Event booked successfully' });
+        // Respond with a JSON object indicating success
+        res.status(200).json({ message: 'Event booked successfully' });
+    } else {
+        res.status(409).json({ message: 'Event with same people and time is already booked' });
+    }
+
+
 });
 
 

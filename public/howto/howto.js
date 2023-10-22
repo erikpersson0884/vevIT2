@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function updateView() {
         if (currentImgIndex >= 0 && currentImgIndex < images.length) {
         const currentImg = images[currentImgIndex];
-        img.src = "images/howto/" + currentImg.img;
+        img.src = "images/" + currentImg.img;
         description.textContent = currentImg.description;
         }
     }

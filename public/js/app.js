@@ -1,4 +1,7 @@
 
+import { getCookie, setCookie } from './cookie.js';
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const userDisplay = document.getElementById("userDisplay");
     const userDropdown = document.getElementById("userDropdown");
@@ -24,12 +27,10 @@ document.addEventListener("DOMContentLoaded", function() {
     let eventTime = null; // To store the selected time
 
     let selectedUser = getCookie("user"); // To store the selected user
+
     if (selectedUser){
         updateselectedUser();
     }
-
-    document.documentElement.style.setProperty("--background-color", getCookie("backgroundColor"));
-    document.documentElement.style.setProperty("--contrast-color", getCookie("contrastColor"));
 
 
 
@@ -77,31 +78,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-    // Set a cookie with the user's name (e.g., "username")
-    function setCookie(name, value, daysToExpire) {
-        const date = new Date();
-        date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
-        const expires = "expires=" + date.toUTCString();
-        document.cookie = name + "=" + value + "; " + expires;
-    }
-
-    // Get the value of a cookie by name
-    function getCookie(name) {
-        const cookieName = name + "=";
-        const cookieArray = document.cookie.split(';');
-        for (let i = 0; i < cookieArray.length; i++) {
-            let cookie = cookieArray[i].trim();
-            if (cookie.indexOf(cookieName) === 0) {
-                return cookie.substring(cookieName.length, cookie.length);
-            }
-        }
-        return "";
-    }
-
-    // Delete a cookie by setting its expiration to the past
-    function deleteCookie(name) {
-        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    }
 
 
 
@@ -326,7 +302,15 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(response => {
                 if (response.ok) {
                     showVevs();
-                } else {
+                } 
+                else if (response.status === 409){
+
+                    response.json().then(data => {
+                        console.log('Conflict (409): ' + data.message);
+                    });
+
+                } 
+                else {
                     // Handle the error here if needed
                     console.error('Failed to book event');
                 }
@@ -460,12 +444,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     function sortEventOnTime(events) {
-        pastEvents = [];
-        futureEvents = [];
+        let  pastEvents = [];
+        let futureEvents = [];
         const getEventDate = (event) => new Date(event.time);
 
         const currentDateTime = new Date();
-        
         
         events.forEach(event => {
             if (getEventDate(event) < currentDateTime) {     
@@ -484,3 +467,5 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 });
+
+
