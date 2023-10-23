@@ -375,10 +375,10 @@ function showVevs(){
 function sortEventOnTime(events) {
     let  pastEvents = [];
     let futureEvents = [];
-    const getEventDate = (event) => new Date(event.time);
+    // const getEventDate = (event) => new Date(event.time);
     
     events.forEach(event => {
-        if (getEventDate(event) < getCurrentTime()) {     
+        if (event.time < getCurrentTime()) {     
             // Event is in the past
             pastEvents.push(event);
         } else {
