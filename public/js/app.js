@@ -42,10 +42,11 @@ export function getCurrentTime() {
 
 function updateWinner(vev, winner) {
     // Send a POST request to the server
-    eventData = {
+    const eventData = {
         vev: vev,
         winner: winner
     }
+    
     fetch('/updateWinner', {
         method: 'POST',
         headers: {
