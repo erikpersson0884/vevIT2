@@ -12,6 +12,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
+// Functions for server
+
 function filterItemsByUser(inputUser, jsonArray) {
     return jsonArray.filter(item => item.user === inputUser || item.opponent === inputUser);
 }
@@ -195,3 +198,4 @@ app.get('/getAllVevs', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+

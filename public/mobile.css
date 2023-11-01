@@ -7,11 +7,25 @@
     }
 
 
+    .main-content {
+        background: #2b303a;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 13rem;
+        height: auto;
+        padding: 2rem;
+        margin-top: 10vh;
+        margin-inline: auto;
+        margin: 10vh auto;
+    }
+
     .sidebar {
         display:block;
         position: static ;
         margin-inline: auto;
-        width: 60%;
+        width: 80%;
+        margin-bottom: 3rem;
     }
 
     .sidebar .DisplayVevsTime {
@@ -22,10 +36,7 @@
 
 
 
-
-
-
-    .footerLinks, footer, #colorDiv {
+    #colorDiv, .footerLinks {
         display: none;
     }
 
