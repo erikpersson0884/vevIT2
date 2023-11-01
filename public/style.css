@@ -10,6 +10,7 @@
 body {
   background-color: var(--background-color);
   color: #ffffff;
+
   font-family: SourceSansPro, -apple-system, system-ui;
 
   margin: 0;
@@ -168,7 +169,7 @@ h1 {
   color: var(--contrast-color);
 }
 
-h3 {
+h2 {
   margin-bottom: 0;
 }
 
@@ -400,3 +401,25 @@ footer p {
 
 
 
+
+/* Lighthouse optimisation */
+
+body {
+  font-size: 16px; /* Use a reasonable base font size */
+}
+
+
+/* Increase the size of a button */
+.button {
+  min-width: 48px; /* Adjust to your preferred width */
+  min-height: 48px; /* Adjust to your preferred height */
+}
+
+
+.sr-only {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

@@ -2,6 +2,7 @@ import { getCookie, setCookie } from './cookie.js';
 
 
 document.documentElement.style.setProperty("--background-color", getCookie("backgroundColor"));
+console.log(getCookie("backgroundColor"));
 document.documentElement.style.setProperty("--contrast-color", getCookie("contrastColor"));
 
 

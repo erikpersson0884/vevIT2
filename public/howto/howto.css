@@ -1,3 +1,7 @@
+:root {
+  --background-color: #2362e0; /* Default color for background*/
+  --contrast-color: #21c937; /* Default color for bookVev button and IT text*/
+}
 
 body {
   min-height: 100vh;
@@ -8,32 +12,32 @@ body {
   }
   
   .imgView {
+    background-color: #363636;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
-    background-color: #363636;
     border-radius: 0.5rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
   .howtoImage {
-    flex: 1;
+    width: 75%;
     text-align: center;
     padding: 1rem;
     border-radius: 0.5rem;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.364);
+    box-shadow: 0 0 5px var(--contrast-color);
   }
   
   .howtoImage img {
     max-width: 80%;
     height: auto;
-    border: 0.3rem solid #09cdda;
+    border: 0.3rem solid var(--contrast-color);
     border-radius: 0.5rem;
   }
   
   #backButton, #forwardButton {
-    background-color: #09cdda;
+    background-color: var(--contrast-color);
     color: #fff;
     width: 3rem;
     height: 3rem;
@@ -52,7 +56,6 @@ body {
   }
   
   #description {
-    color: #333;
     color: #dcdcdc;
 
     font-size: 1.5rem;

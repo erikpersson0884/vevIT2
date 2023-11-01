@@ -6,17 +6,21 @@ const filesToCache = [
   '/',
   '/index.html',
   '/styles.css',
-  '/mobile.css',
-  '/app.js',
-  '/images/*'
+  '/js/app.js'
   // Add more files and assets as needed
 ];
+
 
 // Install the service worker
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(cacheName).then(function(cache) {
-      return cache.addAll(filesToCache);
-    })
+    caches.open(cacheName)
+      .then(function(cache) {
+        return cache.addAll(filesToCache);
+      })
+      .catch(function(error) {
+        console.error('Cache addAll failed:', error);
+      })
   );
 });
+ 

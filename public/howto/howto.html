@@ -7,23 +7,35 @@
 
     <meta name="theme-color" content="#09cdda">
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="stylesheet" type="text/css" href="howto.css">
 
     <script src="howto.js" defer></script>
+    <script src="../js/cookie.js" type="module" defer></script>
+
+    <script src="../js/colorPicker.js" type="module" defer></script>
+
 </head>
 
 
 <body>
+    <!-- Cookie consent pop-up -->
+    <div id="cookie-consent-popup">
+        <p>Cookies används för att förbättra din upplevelse. Genom att använda sidan godkänner användningen av cookies.</p>
+        <button class="button" id="understood-button">OK!</button>
+    </div>
+    
     <div class="imgView">
         <div id="backButton"><</div>
 
         <div class="howtoImage">
-            <img id="img" src="images/howto/1.png">
+            <img id="img" src="images/1.png">
         </div>
         <div id="forwardButton">></div>
         
     </div>
+
+    
     <p id="description"></p>
 
     
@@ -42,11 +54,11 @@
 
     <div class="footerLinks">
         <div class="howto button">
-            <a href="allVevs.html" class="hiddenLink">All Vevs</a>
+            <a href="../allVevs/allvevs.html" class="hiddenLink">All Vevs</a>
         </div>
 
         <div class="howto button">
-            <a href="index.html" class="hiddenLink">Main Page</a>
+            <a href="../index.html" class="hiddenLink">Main Page</a>
         </div>
     </div>
 </body>

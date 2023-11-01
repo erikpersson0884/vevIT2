@@ -2,8 +2,8 @@
 
 @media screen and (max-width: 1000px) {
 
-    h1 {
-        font-size: 3.5rem;
+    h2 {
+        font-size: 1rem;
     }
 
 
@@ -11,9 +11,25 @@
         display:block;
         position: static ;
         margin-inline: auto;
-        width: 80vw;
-        /* font-size: ; */
+        width: 60%;
     }
+
+    .sidebar .DisplayVevsTime {
+        width: 30%;
+        /* min-width: 125px; */
+        /* text-align: right; */
+    }
+
+
+
+
+
+
+    .footerLinks, footer, #colorDiv {
+        display: none;
+    }
+
+    
 
 
 }
