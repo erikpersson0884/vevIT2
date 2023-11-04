@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'user': "none"
             },
         })
             .then(response => {

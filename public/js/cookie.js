@@ -1,5 +1,4 @@
 
-
 // Set a cookie with the user's name (e.g., "username")
 export function setCookie(name, value, daysToExpire) {
     const date = new Date();

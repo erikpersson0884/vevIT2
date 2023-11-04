@@ -257,9 +257,9 @@ function populatePastVevs(vevs) {
     }
 
     vevs.forEach(function(vev){
-        // Create a div element
-        const div = document.createElement("div");
-        div.classList.add("pastVevsLi")
+        // Create a vevElement element
+        const vevElement = document.createElement("li");
+        vevElement.classList.add("pastVevsLi")
         
         // Create three p tags and set their text content
         const p1 = document.createElement("p");
@@ -298,20 +298,20 @@ function populatePastVevs(vevs) {
         //     p1.classList.add("loser");
         // }
 
-        // Append the p tags to the div
-        div.appendChild(p1);
-        div.appendChild(p2);
-        div.appendChild(p3);
+        // Append the p tags to the vevElement
+        vevElement.appendChild(p1);
+        vevElement.appendChild(p2);
+        vevElement.appendChild(p3);
 
         if (selectedUser === vev.winner) {
-            div.classList.add("winner")
+            vevElement.classList.add("winner")
         } else if (vev.opponent === vev.winner) {
-            div.classList.add("loser")
+            vevElement.classList.add("loser")
         }
 
 
-        // Append the div to the container
-        pastVevsUl.appendChild(div);
+        // Append the vevElement to the container
+        pastVevsUl.appendChild(vevElement);
     });
 }
 
@@ -321,9 +321,9 @@ function populatefutureVevs(vevs){
     }
 
     vevs.forEach(function(vev){
-        // Create a div element
-        const div = document.createElement("div");
-        div.classList.add("futureVevsLi")
+        // Create a vevElement element
+        const vevElement = document.createElement("li");
+        vevElement.classList.add("futureVevsLi")
         
         // Create three p tags and set their text content
         const p1 = document.createElement("p");
@@ -338,19 +338,19 @@ function populatefutureVevs(vevs){
         p3.classList.add("DisplayVevsTime")
         p3.textContent = vev.time;
         
-        // Append the p tags to the div
-        div.appendChild(p1);
-        div.appendChild(p2);
-        div.appendChild(p3);
+        // Append the p tags to the vevElement
+        vevElement.appendChild(p1);
+        vevElement.appendChild(p2);
+        vevElement.appendChild(p3);
     
-        // Append the div to the container
-        futureVevsUl.appendChild(div);
+        // Append the vevElement to the container
+        futureVevsUl.appendChild(vevElement);
     });
 };
 
 function showVevs(){
     // GET THE BOOKED VEV
-    fetch('/getAllVevs', {
+    fetch('/getVevs', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

@@ -156,6 +156,30 @@ app.get('/getAllUsers', (req, res) => {
 
 
 app.get('/getAllVevs', (req, res) => {
+    let eventDataArray = [];
+    let events = [];
+
+    try {
+        const data = fs.readFileSync('events.json', 'utf8');
+        eventDataArray = JSON.parse(data);
+    } catch (err) {
+        console.error('Error reading events.json:', err);
+    }
+
+    events = eventDataArray.sort((a, b) => new Date(a.time) - new Date(b.time));
+    
+
+    // Respond with a JSON object indicating success or error
+    if (events) {
+        res.status(200).json(events);
+    }
+    else {
+        res.status(500).json({ error: 'Failed to retrieve events' });
+    }
+});
+
+
+app.get('/getVevs', (req, res) => {
     const user = req.headers.user;
     let eventDataArray = [];
     let events = [];
@@ -187,6 +211,7 @@ app.get('/getAllVevs', (req, res) => {
         res.status(500).json({ error: 'Failed to retrieve events' });
     }
 });
+
 
 
 
