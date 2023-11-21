@@ -1,0 +1,9 @@
+version: "3"
+services:
+  vevit:
+    image: ghcr.io/cthit/vevit:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - ./events.json:/app/events.json
+      - ./users.json:/app/users.json
