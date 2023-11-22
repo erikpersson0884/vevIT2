@@ -15,7 +15,6 @@
         width: 13rem;
         height: auto;
         padding: 2rem;
-        margin-top: 10vh;
         margin-inline: auto;
         margin: 10vh auto;
     }
@@ -26,6 +25,7 @@
         margin-inline: auto;
         width: 80%;
         margin-bottom: 3rem;
+        margin-top: 3rem;
     }
 
     .sidebar .DisplayVevsTime {

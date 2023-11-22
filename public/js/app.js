@@ -13,6 +13,7 @@ const opponentList = document.getElementById("opponentList");
 
 const selectOpponentSelect = document.getElementById("selectOpponentSelect");
 const eventTimeInput = document.getElementById("eventTimeInput");
+const reasonForVevInput = document.getElementById("reasonForVevInput");
 const bookEventButton = document.getElementById("bookVevButton");
 
 const futureVevsUl = document.getElementById("futureVevs");
@@ -23,6 +24,10 @@ let users = []; // To store the user data from users.json
 
 let selectedOpponent = null; // To store the selected user
 let eventTime = null; // To store the selected time
+
+function clearBookingInfo() {
+    reasonForVevInput.value = "";
+}
 
 
 export function getCurrentTime() {
@@ -205,7 +210,6 @@ export function populateOpponentList() {
 
 
 
-
 // Event listener for the "Book Event" button
 bookEventButton.addEventListener("click", function() {
     eventTime = eventTimeInput.value;
@@ -218,7 +222,8 @@ bookEventButton.addEventListener("click", function() {
             opponent: selectedOpponent,
             winner: null,
             bookingTime: getCurrentTime(),
-            time: eventTime
+            time: eventTime,
+            reasonForVev: reasonForVevInput.value
         };
 
         // Send a POST request to the server
@@ -232,6 +237,7 @@ bookEventButton.addEventListener("click", function() {
         .then(response => {
             if (response.ok) {
                 showVevs();
+                clearBookingInfo();
             } 
             else if (response.status === 409){
 
@@ -399,3 +405,7 @@ if (selectedUser){
     updateselectedUser();
 }
 
+
+function showDetailedVev () {
+    
+}

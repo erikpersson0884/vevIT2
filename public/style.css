@@ -176,10 +176,11 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 13rem;
+  width: 16rem;
   height: auto;
   padding: 2rem;
-  margin-top: 18vh;
+  /* padding-top: 1.3rem; */
+  margin-top: 10vh;
   margin-inline: auto;
 }
 
@@ -187,7 +188,7 @@ h1 {
   font-family: Lumanosimo;
   font-size: 3.5rem;
   margin-top: 0;
-  margin-bottom: 1.4rem;
+  margin-bottom: 0rem;
 }
 .it {
   color: var(--contrast-color);
@@ -217,6 +218,21 @@ h2 {
   height: 1.5rem;
   width: 100%;
   margin-bottom: 1em;
+}
+
+.reasonForVevDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  width: 80%;
+}
+
+.reasonForVevDiv input {
+  height: 1.5rem;
+  width: 100%;
 }
 
 .book-vev:hover {
@@ -338,7 +354,6 @@ footer {
 
 #opponentDropdown {
   background-color: rgba(43, 48, 58, 0.755);
-
 }
 
 .addUserButton {
@@ -524,5 +539,22 @@ body {
 }
 
 
+
+
+#detailedVev {
+  background-color: #06379a;
+
+  /* margin-top: 18vh;
+  margin-inline: auto;
+  position: absolute; */
+
+  position: absolute;
+  top: calc(50vh - 10rem);
+  left: calc(50vw - 3.75rem);
+
+  width: 20rem;
+  height: 7.5rem;
+
+}
 
 
