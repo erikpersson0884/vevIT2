@@ -25,6 +25,10 @@ let users = []; // To store the user data from users.json
 let selectedOpponent = null; // To store the selected user
 let eventTime = null; // To store the selected time
 
+let currentDetailedVev = null;
+let currentDetailedVevP = null;
+
+
 function clearBookingInfo() {
     reasonForVevInput.value = "";
 }
@@ -160,7 +164,7 @@ export function populateUserList() {
         userlistItem.addEventListener("click", () => {
             selectedUser = user.name; // Use the formatted name
             updateselectedUser();
-            userDropdown.classList.toggle("hidden");
+            userDropdown.classList.toggle("show");
         });
     
         userList.appendChild(userlistItem);
@@ -176,7 +180,7 @@ export function populateUserList() {
             addUser();
             selectedUser = newUserName; // Use the formatted name
             updateselectedUser();
-            userDropdown.classList.toggle("hidden");
+            userDropdown.classList.toggle("show");
         });
 
         userList.appendChild(addUserlistItem);
@@ -196,7 +200,7 @@ export function populateOpponentList() {
         listItem.addEventListener("click", () => {
             selectedOpponent = opponent.name; // Use the formatted name
             updateSelectedOpponent();
-            opponentDropdown.classList.toggle("hidden");
+            opponentDropdown.classList.toggle("show");
         });
     
         opponentList.appendChild(listItem);
@@ -285,24 +289,7 @@ function populatePastVevs(vevs) {
         const p3 = document.createElement("p");
         p3.classList.add("DisplayVevsTime")
         p3.textContent = vev.time;
-        
-        // if (vev.user === vev.opponent) { // For my favorite user of this fine website, the ones that whishes to fight themself ˘‿˘ 
-        //     if (vev.winner === null) {
-        //         p1.classList.add("loser");
-        //         p2.classList.add("loser");
-        //     } else {
-        //         p1.classList.add("winner");
-        //         p2.classList.add("winner");
-        //     }
-        // } 
-        // else if (vev.user === vev.winner) {
-        //     p1.classList.add("winner");
-        //     p2.classList.add("loser");
-        // } 
-        // else if (vev.opponent === vev.winner) {
-        //     p2.classList.add("winner");
-        //     p1.classList.add("loser");
-        // }
+    
 
         // Append the p tags to the vevElement
         vevElement.appendChild(p1);
@@ -330,6 +317,10 @@ function populatefutureVevs(vevs){
         // Create a vevElement element
         const vevElement = document.createElement("li");
         vevElement.classList.add("futureVevsLi")
+
+        const vevElementDiv = document.createElement("div");
+        vevElementDiv.classList.add("futureVevsLiDiv");
+
         
         // Create three p tags and set their text content
         const p1 = document.createElement("p");
@@ -345,9 +336,22 @@ function populatefutureVevs(vevs){
         p3.textContent = vev.time;
         
         // Append the p tags to the vevElement
-        vevElement.appendChild(p1);
-        vevElement.appendChild(p2);
-        vevElement.appendChild(p3);
+        vevElementDiv.appendChild(p1);
+        vevElementDiv.appendChild(p2);
+        vevElementDiv.appendChild(p3);
+
+        vevElement.appendChild(vevElementDiv);
+
+        const vevReason = document.createElement("p");
+        vevReason.textContent = vev.reasonForVev;
+        vevReason.classList.toggle("hidden")
+        
+        vevElement.appendChild(vevReason);
+
+        // Add an event listener to the vevElement
+        vevElement.addEventListener("click", function() {
+            toggleDetailedVev(vevElement, vevReason);
+        });
     
         // Append the vevElement to the container
         futureVevsUl.appendChild(vevElement);
@@ -406,6 +410,21 @@ if (selectedUser){
 }
 
 
-function showDetailedVev () {
-    
+function toggleDetailedVev(vevObject, vevReason) {
+    if (!currentDetailedVev){
+        vevObject.classList.add("currentActiveVev");
+        vevReason.classList.remove("hidden");
+    } else {
+        currentDetailedVev.classList.remove("currentActiveVev");
+        currentDetailedVevP.classList.add("hidden");
+
+        if (currentDetailedVev !== vevObject){
+            vevObject.classList.add("currentActiveVev");
+            vevReason.classList.remove("hidden");
+        }
+    }
+
+    currentDetailedVev = vevObject;
+    currentDetailedVevP = vevReason;
+
 }

@@ -144,7 +144,7 @@ body {
 }
 
 
-.sidebar div, .sidebar li {
+.sidebar div, .sidebar .futureVevsLiDiv {
   display: flex;
   justify-content: space-between;
 }
@@ -210,7 +210,7 @@ h2 {
   margin-bottom: 1.4rem;
 }
 
-.select-time-div  {
+.selectTimeDiv  {
   display: flex;
 
   justify-content: space-evenly;
@@ -284,7 +284,7 @@ footer {
   background: #fff;
 }
 
-.player-selection {
+.playerSelection {
   text-align: center;
 }
 
@@ -296,6 +296,7 @@ footer {
 #opponentSelection {
   margin: .5rem;
   margin-bottom: 10px;
+  width: 80% !important;
 }
 
 .selectedPlayer {
@@ -430,6 +431,9 @@ footer {
 /* CSS FOR MISC */
 
 .hidden {
+  display: none;
+}
+.show {
   display: block;
 }
 
@@ -541,20 +545,12 @@ body {
 
 
 
-#detailedVev {
-  background-color: #06379a;
-
-  /* margin-top: 18vh;
-  margin-inline: auto;
-  position: absolute; */
-
-  position: absolute;
-  top: calc(50vh - 10rem);
-  left: calc(50vw - 3.75rem);
-
-  width: 20rem;
-  height: 7.5rem;
-
+.currentActiveVev {
+  background-color: #2b2b2b;
+  border-radius: .5rem;
+  padding: .5rem;
 }
 
-
+.currentActiveVev> div {
+  border-bottom: solid .1rem ;
+}

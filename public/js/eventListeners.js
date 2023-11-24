@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Event listener for displaying the dropdown when "USER" is clicked
     userDisplay.addEventListener("click", () => {
-        userDropdown.classList.toggle("hidden");
+        userDropdown.classList.toggle("show");
         userSearchInput.value = "";
         populateUserList();
         userSearchInput.focus();
     });
 
     opponentDisplay.addEventListener("click", () => {
-        opponentDropdown.classList.toggle("hidden");
+        opponentDropdown.classList.toggle("show");
         opponentSearchInput.value = "";
         opponentSearchInput.focus();
         populateOpponentList();
@@ -26,3 +26,4 @@ document.addEventListener("DOMContentLoaded", function() {
     userSearchInput.addEventListener('input', populateUserList);
     opponentSearchInput.addEventListener('input', populateOpponentList);
 });
+
