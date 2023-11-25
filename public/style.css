@@ -144,7 +144,7 @@ body {
 }
 
 
-.sidebar div, .sidebar .futureVevsLiDiv {
+.sidebar div, .sidebar .VevsLiDiv {
   display: flex;
   justify-content: space-between;
 }
@@ -199,17 +199,6 @@ h2 {
 }
 
 
-.select-student-button {
-  background: #fff;
-  font-size: 1.15rem;
-  display: flex;
-  line-height: normal;
-  width: 11.7rem;
-  height: 2rem;
-  text-align: center;
-  margin-bottom: 1.4rem;
-}
-
 .selectTimeDiv  {
   display: flex;
 
@@ -219,6 +208,11 @@ h2 {
   width: 100%;
   margin-bottom: 1em;
 }
+
+.timeLabel {
+  margin-right: 1rem;
+}
+
 
 .reasonForVevDiv {
   display: flex;
@@ -349,21 +343,17 @@ footer {
   z-index: 40;
 }
 
-#opponentSelection {
-  width: 10.975rem;
-}
-
 #opponentDropdown {
   background-color: rgba(43, 48, 58, 0.755);
+  width: 12.8rem;
+
 }
 
 .addUserButton {
   background: rgb(15, 15, 63);
 }
 
-/* .selectedUser:hover, .selectedOpponent:hover {
-  background: rgba(65, 64, 64, 0.381);
-} */
+
 
 
 
@@ -392,6 +382,7 @@ footer {
   cursor: pointer;
   border-radius: 5px;
   margin-top: 10px;
+  margin-inline: auto;
 }
 
 
@@ -546,11 +537,11 @@ body {
 
 
 .currentActiveVev {
-  background-color: #2b2b2b;
-  border-radius: .5rem;
-  padding: .5rem;
+  padding: 1rem; /* Adjust padding as needed */
+  border: 1px solid #fff; /* Match the border color used in the sidebar */
+  border-radius: .32rem;
 }
 
-.currentActiveVev> div {
-  border-bottom: solid .1rem ;
+.currentActiveVev > div {
+  border-bottom: 1px solid #fff; /* Match the border color used in the sidebar */
 }

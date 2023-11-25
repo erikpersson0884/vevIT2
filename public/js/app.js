@@ -269,44 +269,68 @@ function populatePastVevs(vevs) {
     vevs.forEach(function(vev){
         // Create a vevElement element
         const vevElement = document.createElement("li");
-        vevElement.classList.add("pastVevsLi")
+        vevElement.classList.add("VevsLi")
+
+        const vevElementDiv = document.createElement("div");
+        vevElementDiv.classList.add("VevsLiDiv");
+
         
         // Create three p tags and set their text content
         const p1 = document.createElement("p");
         p1.classList.add("DisplayVevsUser")
         p1.textContent = vev.user;
         p1.addEventListener("click", function() {
-            updateWinner(vev, vev.user);
-            });
+            if (vev = currentDetailedVev){
+                updateWinner(vev, vev.user);
+            }        
+        });
         
         const p2 = document.createElement("p");
         p2.classList.add("DisplayVevsOpponent")
         p2.textContent = vev.opponent;
         p2.addEventListener("click", function() {
-            updateWinner(vev, vev.opponent);
+            if (vev = currentDetailedVev){
+                updateWinner(vev, vev.opponent);
+            }
         });
-
+        
         const p3 = document.createElement("p");
         p3.classList.add("DisplayVevsTime")
         p3.textContent = vev.time;
-    
-
+        
         // Append the p tags to the vevElement
-        vevElement.appendChild(p1);
-        vevElement.appendChild(p2);
-        vevElement.appendChild(p3);
+        vevElementDiv.appendChild(p1);
+        vevElementDiv.appendChild(p2);
+        vevElementDiv.appendChild(p3);
 
-        if (selectedUser === vev.winner) {
-            vevElement.classList.add("winner")
-        } else if (vev.opponent === vev.winner) {
-            vevElement.classList.add("loser")
+        // Code for showing the winner, not working currently as the winner cannot be changed in detail view
+        // if (selectedUser === vev.winner) {
+        //     vevElementDiv.classList.add("winner")
+        // } else if (vev.opponent === vev.winner) {
+        //     vevElementDiv.classList.add("loser")
+        // }
+
+        vevElement.appendChild(vevElementDiv);
+
+        const vevReason = document.createElement("p");
+        if (vev.reasonForVev === "" || vev.reasonForVev === undefined){
+            vevReason.textContent = "Ingen anledning, ¯\\_(ツ)_/¯";
+        } else {
+            vevReason.textContent = vev.reasonForVev;
         }
+        vevReason.classList.toggle("hidden")
+        
+        vevElement.appendChild(vevReason);
 
-
+        // Add an event listener to the vevElement
+        vevElement.addEventListener("click", function() {
+            toggleDetailedVev(vevElement, vevReason);
+        });
+    
         // Append the vevElement to the container
         pastVevsUl.appendChild(vevElement);
     });
-}
+};
 
 function populatefutureVevs(vevs){
     while (futureVevsUl.firstChild) {
@@ -316,10 +340,10 @@ function populatefutureVevs(vevs){
     vevs.forEach(function(vev){
         // Create a vevElement element
         const vevElement = document.createElement("li");
-        vevElement.classList.add("futureVevsLi")
+        vevElement.classList.add("VevsLi")
 
         const vevElementDiv = document.createElement("div");
-        vevElementDiv.classList.add("futureVevsLiDiv");
+        vevElementDiv.classList.add("VevsLiDiv");
 
         
         // Create three p tags and set their text content
@@ -343,7 +367,11 @@ function populatefutureVevs(vevs){
         vevElement.appendChild(vevElementDiv);
 
         const vevReason = document.createElement("p");
-        vevReason.textContent = vev.reasonForVev;
+        if (vev.reasonForVev === "" || vev.reasonForVev === undefined){
+            vevReason.textContent = "Ingen anledning, ¯\\_(ツ)_/¯";
+        } else {
+            vevReason.textContent = vev.reasonForVev;
+        }
         vevReason.classList.toggle("hidden")
         
         vevElement.appendChild(vevReason);
@@ -421,7 +449,12 @@ function toggleDetailedVev(vevObject, vevReason) {
         if (currentDetailedVev !== vevObject){
             vevObject.classList.add("currentActiveVev");
             vevReason.classList.remove("hidden");
+        } else {
+            currentDetailedVev = null;
+            currentDetailedVevP = null;
+            return;
         }
+        
     }
 
     currentDetailedVev = vevObject;
