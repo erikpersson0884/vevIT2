@@ -144,7 +144,7 @@ body {
 }
 
 
-.sidebar div, .sidebar .VevsLiDiv {
+.sidebar > div, .sidebar .VevsLiDiv {
   display: flex;
   justify-content: space-between;
 }
@@ -544,4 +544,17 @@ body {
 
 .currentActiveVev > div {
   border-bottom: 1px solid #fff; /* Match the border color used in the sidebar */
+}
+
+.setWinnerButton {
+  background-color: red;
+}
+
+.DetailedVevInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.DetailedVevInfo button {
+
 }

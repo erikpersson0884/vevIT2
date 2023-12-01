@@ -140,7 +140,7 @@ function filterUsersSearch(searchInput) {
 
 // Function to update the selected user display
 function updateselectedUser() {
-    showVevs()
+    showVevs();
     userDisplay.textContent = selectedUser;
     userSearchInput.value = null;
     setCookie("user", selectedUser, 300);
@@ -261,76 +261,108 @@ bookEventButton.addEventListener("click", function() {
     }
 });
 
+
 function populatePastVevs(vevs) {
     while (pastVevsUl.firstChild) {
         pastVevsUl.removeChild(pastVevsUl.firstChild);
     }
 
     vevs.forEach(function(vev){
+ 
+        pastVevsUl.appendChild(createAPastVev(vev));
+    });
+};
+
+
+function createAPastVev(vev){
         // Create a vevElement element
         const vevElement = document.createElement("li");
         vevElement.classList.add("VevsLi")
 
-        const vevElementDiv = document.createElement("div");
-        vevElementDiv.classList.add("VevsLiDiv");
-
-        
-        // Create three p tags and set their text content
-        const p1 = document.createElement("p");
-        p1.classList.add("DisplayVevsUser")
-        p1.textContent = vev.user;
-        p1.addEventListener("click", function() {
-            if (vev = currentDetailedVev){
-                updateWinner(vev, vev.user);
-            }        
-        });
-        
-        const p2 = document.createElement("p");
-        p2.classList.add("DisplayVevsOpponent")
-        p2.textContent = vev.opponent;
-        p2.addEventListener("click", function() {
-            if (vev = currentDetailedVev){
-                updateWinner(vev, vev.opponent);
-            }
-        });
-        
-        const p3 = document.createElement("p");
-        p3.classList.add("DisplayVevsTime")
-        p3.textContent = vev.time;
-        
-        // Append the p tags to the vevElement
-        vevElementDiv.appendChild(p1);
-        vevElementDiv.appendChild(p2);
-        vevElementDiv.appendChild(p3);
-
-        // Code for showing the winner, not working currently as the winner cannot be changed in detail view
-        // if (selectedUser === vev.winner) {
-        //     vevElementDiv.classList.add("winner")
-        // } else if (vev.opponent === vev.winner) {
-        //     vevElementDiv.classList.add("loser")
-        // }
-
-        vevElement.appendChild(vevElementDiv);
-
-        const vevReason = document.createElement("p");
-        if (vev.reasonForVev === "" || vev.reasonForVev === undefined){
-            vevReason.textContent = "Ingen anledning, ¯\\_(ツ)_/¯";
-        } else {
-            vevReason.textContent = vev.reasonForVev;
-        }
-        vevReason.classList.toggle("hidden")
-        
-        vevElement.appendChild(vevReason);
+        vevElement.appendChild(createBasicVevInfo(vev));
+        const DetailedVevInfoDiv = createDetailedVevInfo(vev);
+        vevElement.appendChild(DetailedVevInfoDiv);
 
         // Add an event listener to the vevElement
         vevElement.addEventListener("click", function() {
-            toggleDetailedVev(vevElement, vevReason);
+            toggleDetailedVev(vevElement, DetailedVevInfoDiv);
         });
-    
-        // Append the vevElement to the container
-        pastVevsUl.appendChild(vevElement);
-    });
+    return vevElement;
 };
+
+
+function createBasicVevInfo(vev){
+    
+    const basicVevInfoDiv = document.createElement("div");
+    basicVevInfoDiv.classList.add("VevsLiDiv");
+
+    // Create three p tags and set their text content
+    const p1 = document.createElement("p");
+    p1.classList.add("DisplayVevsUser")
+    p1.textContent = vev.user;
+    p1.addEventListener("click", function() { // Eventlistener for updatig the winner
+        if (vev = currentDetailedVev){
+            updateWinner(vev, vev.user);
+        }
+    });
+    
+    const p2 = document.createElement("p");
+    p2.classList.add("DisplayVevsOpponent")
+    p2.textContent = vev.opponent;
+    p2.addEventListener("click", function() { // Eventlistener for updatig the winner
+        if (vev = currentDetailedVev){
+            updateWinner(vev, vev.opponent);
+        }
+    });
+    
+    const p3 = document.createElement("p");
+    p3.classList.add("DisplayVevsTime")
+    p3.textContent = vev.time;
+    
+    // Append the p tags to the vevElement
+    basicVevInfoDiv.appendChild(p1);
+    basicVevInfoDiv.appendChild(p2);
+    basicVevInfoDiv.appendChild(p3);
+
+    // Code for showing the winner, not working currently as the winner cannot be changed in detail view
+    if (selectedUser === vev.winner) {
+        basicVevInfoDiv.classList.add("winner")
+    } else if (vev.opponent === vev.winner) {
+        basicVevInfoDiv.classList.add("loser")
+    }
+    return basicVevInfoDiv;
+};
+
+function createDetailedVevInfo(vev){
+    const DetailedVevInfoDiv = document.createElement("div");
+    DetailedVevInfoDiv.classList.add("DetailedVevInfo");
+
+    DetailedVevInfoDiv.appendChild(createVevReason(vev));
+
+    const setWinnerButton = document.createElement("button");
+    setWinnerButton.textContent = "Set vinner";
+    setWinnerButton.classList.add("setWinnerButton");
+
+    DetailedVevInfoDiv.appendChild(setWinnerButton);
+
+    DetailedVevInfoDiv.classList.toggle("hidden");
+
+    return DetailedVevInfoDiv;
+}
+
+function createVevReason(vev){
+    const vevReason = document.createElement("p");
+    if (vev.reasonForVev === "" || vev.reasonForVev === undefined){
+        vevReason.textContent = "Ingen anledning, ¯\\_(ツ)_/¯";
+    } else {
+        vevReason.textContent = vev.reasonForVev;
+    }
+
+    return vevReason;
+}
+
+
+
 
 function populatefutureVevs(vevs){
     while (futureVevsUl.firstChild) {
