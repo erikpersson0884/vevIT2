@@ -50,6 +50,7 @@ export function getCurrentTime() {
 
 
 function updateWinner(vev, winner) {
+    console.log("updateWinner");
     // Send a POST request to the server
     const eventData = {
         vev: vev,
@@ -284,8 +285,10 @@ function createAPastVev(vev){
         vevElement.appendChild(DetailedVevInfoDiv);
 
         // Add an event listener to the vevElement
-        vevElement.addEventListener("click", function() {
+        vevElement.addEventListener("click", function(event) {
             toggleDetailedVev(vevElement, DetailedVevInfoDiv);
+            event.stopPropagation();
+
         });
     return vevElement;
 };
@@ -297,31 +300,36 @@ function createBasicVevInfo(vev){
     basicVevInfoDiv.classList.add("VevsLiDiv");
 
     // Create three p tags and set their text content
+    const div1 = document.createElement("div");
+    div1.classList.add("DisplayVevsUser")
+
     const p1 = document.createElement("p");
-    p1.classList.add("DisplayVevsUser")
     p1.textContent = vev.user;
     p1.addEventListener("click", function() { // Eventlistener for updatig the winner
-        if (vev = currentDetailedVev){
-            updateWinner(vev, vev.user);
-        }
+        updateWinner(vev, vev.user);
     });
+    div1.appendChild(p1);
+
+    const div2 = document.createElement("div");
+    div2.classList.add("DisplayVevsOpponent")
     
     const p2 = document.createElement("p");
     p2.classList.add("DisplayVevsOpponent")
     p2.textContent = vev.opponent;
+
     p2.addEventListener("click", function() { // Eventlistener for updatig the winner
-        if (vev = currentDetailedVev){
-            updateWinner(vev, vev.opponent);
-        }
+        console.log("clicked");
+        updateWinner(vev, vev.opponent);
     });
+    div2.appendChild(p2);
     
     const p3 = document.createElement("p");
     p3.classList.add("DisplayVevsTime")
     p3.textContent = vev.time;
     
     // Append the p tags to the vevElement
-    basicVevInfoDiv.appendChild(p1);
-    basicVevInfoDiv.appendChild(p2);
+    basicVevInfoDiv.appendChild(div1);
+    basicVevInfoDiv.appendChild(div2);
     basicVevInfoDiv.appendChild(p3);
 
     // Code for showing the winner, not working currently as the winner cannot be changed in detail view

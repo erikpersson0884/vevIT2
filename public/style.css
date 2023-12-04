@@ -149,8 +149,14 @@ body {
   justify-content: space-between;
 }
 
+
+
 .sidebar > div {
   border-bottom: 5px #fff solid;
+}
+
+.DisplayVevsUser p {
+  width: min-content;
 }
 
 .sidebar .DisplayVevsUser {
@@ -237,6 +243,8 @@ h2 {
 /* Code for footer */
 
 footer {
+  font-size: 1.1rem;
+
   position: absolute;
   bottom: 0;
   left: 0;
@@ -556,11 +564,5 @@ body {
 }
 
 .DetailedVevInfo button {
-  display: none;
-}
-
-
-
-.activeDetailedVev {
   display: none;
 }
