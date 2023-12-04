@@ -2,7 +2,7 @@
 
 :root {
   --background-color: #111317; /* Default color for background*/
-  --contrast-color: #21c937; /* Default color for bookVev button and IT text*/
+  --contrast-color: #be1313; /* Default color for bookVev button and IT text*/
 }
 
  /* Code for main html tags */
@@ -100,7 +100,7 @@ body {
 }
 
 #resetColorPickers:hover {
-  background: #21c937;
+  background: #be1313;
 }
 
 
@@ -383,7 +383,7 @@ footer {
 }
 
 #understood-button {
-  background: #21c937;
+  background: #21c937; /* Should be green and not contrast color */
   color: #000;
   border: none;
   padding: 10px 20px;

@@ -5,6 +5,9 @@ document.documentElement.style.setProperty("--background-color", getCookie("back
 console.log(getCookie("backgroundColor"));
 document.documentElement.style.setProperty("--contrast-color", getCookie("contrastColor"));
 
+const backgroundColor = '#000000';
+const contrastColor = '#be1313';
+
 
 // Code for the color picker to change site color
 const backgroundColorPicker = document.getElementById("backgroundColorPicker");
@@ -42,8 +45,8 @@ resetColorPickers.addEventListener("click", () => {
 });
 
 function resetColors(){
-    document.documentElement.style.setProperty("--background-color", "#000000");
-    document.documentElement.style.setProperty("--contrast-color", "#21c937");
-    setCookie("backgroundColor", "#000000", 300)
-    setCookie("contrastColor", "#21c937", 300)
+    document.documentElement.style.setProperty("--background-color", backgroundColor);
+    document.documentElement.style.setProperty("--contrast-color", contrastColor);
+    setCookie("backgroundColor", backgroundColor, 300)
+    setCookie("contrastColor", contrastColor, 300)
 }

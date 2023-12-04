@@ -1,0 +1,8 @@
+
+V2.3
+--background-color: #111317; /* Default color for background*/
+--contrast-color: #21c937; /* Default color for bookVev button and IT text*/
+
+V2.4
+  --background-color: #111317; /* Default color for background*/
+  --contrast-color: #be1313; /* Default color for bookVev button and IT text*/
