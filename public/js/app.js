@@ -335,7 +335,6 @@ function createBasicVevInfo(vev){
 
 function createDetailedVevInfo(vev){
     const DetailedVevInfoDiv = document.createElement("div");
-    DetailedVevInfoDiv.classList.add("DetailedVevInfo");
 
     DetailedVevInfoDiv.appendChild(createVevReason(vev));
 
@@ -473,14 +472,14 @@ if (selectedUser){
 function toggleDetailedVev(vevObject, vevReason) {
     if (!currentDetailedVev){
         vevObject.classList.add("currentActiveVev");
-        vevReason.classList.remove("hidden");
+        vevReason.classList.add("DetailedVevInfo");
     } else {
         currentDetailedVev.classList.remove("currentActiveVev");
-        currentDetailedVevP.classList.add("hidden");
+        currentDetailedVevP.classList.remove("DetailedVevInfo");
 
         if (currentDetailedVev !== vevObject){
             vevObject.classList.add("currentActiveVev");
-            vevReason.classList.remove("hidden");
+            vevReason.classList.add("DetailedVevInfo");
         } else {
             currentDetailedVev = null;
             currentDetailedVevP = null;

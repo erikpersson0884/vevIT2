@@ -556,5 +556,11 @@ body {
 }
 
 .DetailedVevInfo button {
+  display: none;
+}
 
+
+
+.activeDetailedVev {
+  display: none;
 }

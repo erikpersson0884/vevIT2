@@ -213,6 +213,10 @@ app.get('/getVevs', (req, res) => {
 });
 
 
+// Serve uploaded images
+app.use('/uploads', express.static('uploads'));
+
+
 
 
 
