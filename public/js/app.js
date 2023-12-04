@@ -50,7 +50,6 @@ export function getCurrentTime() {
 
 
 function updateWinner(vev, winner) {
-    console.log("updateWinner");
     // Send a POST request to the server
     const eventData = {
         vev: vev,
@@ -286,10 +285,13 @@ function createAPastVev(vev){
 
         // Add an event listener to the vevElement
         vevElement.addEventListener("click", function(event) {
-            toggleDetailedVev(vevElement, DetailedVevInfoDiv);
-            event.stopPropagation();
-
+            // Check if the clicked element or any of its ancestors is a <p> tag
+            if (!(event.target.closest('p') && vevElement === currentDetailedVev) ) {
+                // If not, proceed with your toggleDetailedVev logic
+                toggleDetailedVev(vevElement, DetailedVevInfoDiv);
+            }
         });
+        
     return vevElement;
 };
 
@@ -299,14 +301,15 @@ function createBasicVevInfo(vev){
     const basicVevInfoDiv = document.createElement("div");
     basicVevInfoDiv.classList.add("VevsLiDiv");
 
-    // Create three p tags and set their text content
     const div1 = document.createElement("div");
     div1.classList.add("DisplayVevsUser")
 
     const p1 = document.createElement("p");
     p1.textContent = vev.user;
     p1.addEventListener("click", function() { // Eventlistener for updatig the winner
-        updateWinner(vev, vev.user);
+        if (basicVevInfoDiv.parentNode === currentDetailedVev && vev.winner !== vev.user){
+            updateWinner(vev, vev.user);
+        }
     });
     div1.appendChild(p1);
 
@@ -318,8 +321,9 @@ function createBasicVevInfo(vev){
     p2.textContent = vev.opponent;
 
     p2.addEventListener("click", function() { // Eventlistener for updatig the winner
-        console.log("clicked");
-        updateWinner(vev, vev.opponent);
+        if (basicVevInfoDiv.parentNode === currentDetailedVev && vev.winner !== vev.opponent){
+            updateWinner(vev, vev.opponent);
+        }
     });
     div2.appendChild(p2);
     
@@ -444,7 +448,6 @@ function showVevs(){
             const events = sortEventOnTime(data);
             populatePastVevs(events.pastEvents);
             populatefutureVevs(events.futureEvents);
-    
         })
 }
 
